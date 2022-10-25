@@ -5,27 +5,84 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @* => IMPORT GOOGLE FONT ~ POPPINS EXTRALIGHT 200 *@
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-    @* <= *@
+    @* -->IMPORT UNICONS FROM ICONSCOUT *@
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    @* <-- *@
     @Styles.Render("~/styles/layout")
 </head>
 <body>
-    <div class="header-content">
-        <div class="navbar-pl">
-            <h1>HOLA</h1>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="~/Img/icons8-mesh-100.png" alt="eduAx logo" />
+            </div>
+            <span class="logo_name">eduAx</span>
         </div>
-    </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="#">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-layers"></i>
+                        <span class="link-name">Courses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-signal-alt-3"></i>
+                        <span class="link-name">My progress</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="logout-mod">
+                <li>
+                    <a href="#">
+                        <i class="uil uil-comment-question"></i>
+                        <span class="link-name">Support</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-setting"></i>
+                        <span class="link-name">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark mode</span>
+                    </a>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="main-content">
         @RenderBody()
-
     </div>
-    <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-    </footer>
+    @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>*@
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>
