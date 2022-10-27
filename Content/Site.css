@@ -13,7 +13,7 @@ html {
 
 :root {
     /*  Colors    */
-    --primary-color: #414BB2;
+    --primary-color: #1ABC9C;
     --panel-color: #F8F8F8;
     --text-color: #000;
     --black-light-color: #707070;
@@ -41,12 +41,18 @@ nav {
     height: 100%;
     width: 25rem;
     background-color: var(--panel-color);
+    border-right: .2rem solid var(--border-color);
+    transition: var(--trans-05);
+    padding: 1rem 1.5rem;
 }
+
+    nav.close {
+        width: 7.3rem;
+    }
 
     nav .logo-name {
         display: flex;
-        align-items: center;
-        padding: 0.5rem 0 0 0.5rem;
+        align-items: center;        
     }
 
     nav .logo-image {
@@ -65,6 +71,12 @@ nav {
         font-size: 2.2rem;
         font-weight: 600;
         color: var(--text-color);
+        transition: var(--trans-05);
+    }
+
+    nav.close .logo_name {
+        opacity: 0;
+        pointer-events: none;
     }
 
     nav .menu-items {
@@ -90,7 +102,7 @@ nav {
     .nav-links li a:hover:before{
         content: "";
         position: absolute;
-        left: .4rem;
+        left: -.7rem;
         height: 3rem;
         width: .3rem;        
         border-radius: 20%;
@@ -111,6 +123,13 @@ nav {
     font-size: 1.8rem;
     font-weight: 400;
     color: var(--black-light-color);
+    transition: var(--trans-05);
+}
+
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+
 }
 
 .nav-links li a:hover i,
@@ -118,9 +137,19 @@ nav {
     color: var(--primary-color);
 }
 
-.menu-items .mode{
+.menu-items .bottom-nav-links {
+    border-top: .2rem solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.menu-items .mode {
     display: flex;
-    align-items: center;
+    align-items: center;    
+}
+
+.menu-items .progress,
+.menu-items .mode {
+    white-space: nowrap;
 }
 
 .menu-items .mode-toggle{
@@ -154,3 +183,49 @@ nav {
     background-color: var(--panel-color);
     border-radius: 50%;
 }
+
+/*MAIN CONTENT*/
+.main-content{
+    position: relative;
+    left: 25rem;
+    background-color: var(--panel-color);
+    height: 100vh;
+    width: calc(100% - 25rem);
+    padding: 1rem 1.4rem;
+    transition: var(--trans-05);
+}
+
+nav.close ~ .main-content{
+    left: 7.3rem;
+    width: calc(100% - 7.3rem);
+}
+
+.main-content .top-nav{    
+    position: fixed;
+    top: 0;
+    left: 25rem;
+    padding: 1rem 1.4rem;
+    width: calc(100% - 25rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--title-icon-color);
+    transition: var(--trans-05);
+}
+
+nav.close ~ .main-content .top-nav{
+    left: 7.3rem;
+    width: calc(100% - 7.3rem);
+}
+
+    .main-content .top-nav .sidebar-toggle{
+        font-size: 2.6rem;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+    
+    .top-nav img{
+        width: 4rem;        
+        border-radius: 50%;
+    }
+/*FOOTER*/

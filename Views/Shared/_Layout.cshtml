@@ -14,7 +14,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="~/Img/icons8-mesh-100.png" alt="eduAx logo" />
+                <img src="~/Img/icons8-first-aid-kit-64.png" alt="eduAx logo" />
             </div>
             <span class="logo_name">eduAx</span>
         </div>
@@ -35,33 +35,31 @@
                 <li>
                     <a href="#">
                         <i class="uil uil-signal-alt-3"></i>
-                        <span class="link-name">My progress</span>
+                        <span class="link-name progress">My progress</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="logout-mod">
                 <li>
                     <a href="#">
                         <i class="uil uil-comment-question"></i>
                         <span class="link-name">Support</span>
                     </a>
                 </li>
+            </ul>
+            <ul class="bottom-nav-links">
                 <li>
                     <a href="#">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Settings</span>
+                        <i class="uil uil-language"></i>
+                        <span class="link-name">Spanish</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
+                        @*
+                            SIGN OUT (LOGOUT)
+                            <i class="uil uil-signout"></i>
+                        *@
+                        <i class="uil uil-signin"></i>
+                        <span class="link-name">Login</span>
                     </a>
                 </li>
                 <li class="mode">
@@ -76,13 +74,18 @@
             </ul>
         </div>
     </nav>
-    <div class="main-content">
+    <section class="main-content">
+        <div class="top-nav">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <img src="~/Img/student1.png" alt="User avatar" />
+        </div>
         @RenderBody()
-    </div>
+    </section>
     @*<hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>*@
+        </footer>
+    *@
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>

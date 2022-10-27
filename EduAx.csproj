@@ -132,12 +132,21 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Img\icons8-mesh-100.png" />
-    <Content Include="Img\icons8-mesh-50.png" />
+    <Content Include="Img\adm1.png" />
+    <Content Include="Img\adm2.png" />
+    <Content Include="Img\adm3.png" />
+    <Content Include="Img\icons8-first-aid-kit-64.png" />
+    <Content Include="Img\icons8-mesh-100%28V%29.png" />
+    <Content Include="Img\icons8-mesh-50%28V%29.png" />
+    <Content Include="Img\student1.png" />
+    <Content Include="Img\student2.png" />
+    <Content Include="Img\teacher1.png" />
+    <Content Include="Img\teacher2.png" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
