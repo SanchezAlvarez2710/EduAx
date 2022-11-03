@@ -14,6 +14,7 @@ html {
 :root {
     /*  Colors    */
     --primary-color: #1ABC9C;
+    --secundary-color: #7FEDD8;
     --panel-color: #F8F8F8;
     --text-color: #000;
     --black-light-color: #707070;
@@ -31,7 +32,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: var(--primary-color);
+    background-color: var(--panel-color);
 }
 
 nav {
@@ -213,6 +214,12 @@ nav.close ~ .main-content{
     transition: var(--trans-05);
 }
 
+.top-nav .left{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 nav.close ~ .main-content .top-nav{
     left: 7.3rem;
     width: calc(100% - 7.3rem);
@@ -228,4 +235,15 @@ nav.close ~ .main-content .top-nav{
         width: 4rem;        
         border-radius: 50%;
     }
+
+.body-content{
+    margin: 15rem 0 0 0;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.body-content h1{
+    font-size: 5rem;
+}
 /*FOOTER*/

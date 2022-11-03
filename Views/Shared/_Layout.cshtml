@@ -76,10 +76,15 @@
     </nav>
     <section class="main-content">
         <div class="top-nav">
-            <i class="uil uil-bars sidebar-toggle"></i>
-            <img src="~/Img/student1.png" alt="User avatar" />
+            <div class="left">
+                <i class="uil uil-bars sidebar-toggle"></i>
+                <h2>You are on > @Html.ActionLink("Home", "", "")</h2>
+            </div>
+            <img src="~/Img/default.png" alt="User avatar" />
         </div>
-        @RenderBody()
+        <div class="body-content">
+            @RenderBody()
+        </div>
     </section>
     @*<hr />
         <footer>
