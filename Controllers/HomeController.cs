@@ -11,6 +11,6 @@ namespace EduAx.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }        
     }
 }

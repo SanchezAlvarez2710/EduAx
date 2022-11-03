@@ -212,6 +212,7 @@ nav.close ~ .main-content{
     align-items: center;
     background-color: var(--title-icon-color);
     transition: var(--trans-05);
+    z-index: 10;
 }
 
 .top-nav .left{
@@ -237,7 +238,7 @@ nav.close ~ .main-content .top-nav{
     }
 
 .body-content{
-    margin: 15rem 0 0 0;    
+    margin: 10rem 0 0 0;    
     display: flex;
     flex-direction: column;
     align-items: center;
