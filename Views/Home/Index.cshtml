@@ -3,11 +3,12 @@
 }
 
 <link href="~/Content/Index.css" rel="stylesheet" />
+<!-- Link Swiper's CSS -->
 <link href="~/Content/swiper-bundle.min.css" rel="stylesheet" />
 
-<section class="main">
-    <div class="wrapper">
-        <div class="slide">
+<section class="main swiper mySwiper">
+    <div class="wrapper swiper-wrapper">
+        <div class="slide swiper-slide">
             <img src="~/Img/slider1.jpg" alt="" class="image" />
             <div class="image-data">
                 <span class="text">ladwadadaw</span>
@@ -17,5 +18,50 @@
                 </h2>
             </div>
         </div>
+        <div class="slide swiper-slide">
+            <img src="~/Img/slider2.jpg" alt="" class="image" />
+            <div class="image-data">
+                <span class="text">ladwadadaw</span>
+                <h2>
+                    lorem ipsum an se <br />
+                    rkadwa khalfum aw
+                </h2>
+            </div>
+        </div>
+        <div class="slide swiper-slide">
+            <img src="~/Img/slider3.jpg" alt="" class="image" />
+            <div class="image-data">
+                <span class="text">ladwadadaw</span>
+                <h2>
+                    lorem ipsum an se <br />
+                    rkadwa khalfum aw
+                </h2>
+            </div>
+        </div>
     </div>
+    <div class="swiper-button-next nav-btn"></div>
+    <div class="swiper-button-prev nav-btn"></div>
+    <div class="swiper-pagination"></div>
 </section>
+
+<!-- Swiper JS -->
+<script src="~/Scripts/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {        
+        centeredSlides: true,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,            
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>

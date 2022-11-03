@@ -14,7 +14,7 @@ html {
 :root {
     /*  Colors    */
     --primary-color: #1ABC9C;
-    --secundary-color: #7FEDD8;
+    --secondary-color: #7FEDD8;
     --panel-color: #F8F8F8;
     --text-color: #000;
     --black-light-color: #707070;
@@ -220,6 +220,17 @@ nav.close ~ .main-content{
     align-items: center;
     gap: 2rem;
 }
+    .top-nav .left h2 a {
+        color: var(--primary-color);
+        padding: .4rem 1rem;
+        text-decoration: none;
+    }
+
+    .top-nav .left h2 a:hover {
+        background-color: var(--primary-color);
+        color: var(--panel-color);
+        border-radius: .5rem;        
+    }
 
 nav.close ~ .main-content .top-nav{
     left: 7.3rem;
