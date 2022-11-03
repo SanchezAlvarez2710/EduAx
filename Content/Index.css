@@ -18,14 +18,20 @@
     height: 100%;
 }
 
-.slide::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
+    .slide::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        /* ----- linear gradient ----- */
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 86%, rgba(0,0,0,0.4) 88%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.9)), color-stop(86%, rgba(0,0,0,0.4)), color-stop(88%, rgba(0,0,0,0.4)));
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 86%, rgba(0,0,0,0.4) 88%);
+        background: -o-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 86%, rgba(0,0,0,0.4) 88%);
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 86%, rgba(0,0,0,0.4) 88%);
+        /* ----- ----- ----- ----- ----- */
+        z-index: 1;
+    }
 
 .wrapper{
     position: relative;
@@ -93,6 +99,43 @@
     background-color: var(--secondary-color) !important;
 }
 
+/* ------ about us ------ */
+.box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(-50%, 0);
+    bottom: 5%;
+    left: 50%;    
+    z-index: 3;    
+}
+
+    .box h2 {
+        color: var(--panel-color);
+        animation: animate-txt 2s infinite;
+        font-size: 2rem;        
+    }
+
+.box span{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-bottom: 3px solid var(--panel-color);
+    border-right: 3px solid var(--panel-color);
+    transform: rotate(45deg);
+    margin: -.1rem;
+    animation: animate-row 2s infinite;
+}
+
+    .box span:nth-last-child(2) {
+        animation-delay: -0.2s;
+    }
+
+    .box span:nth-last-child(1) {
+        animation-delay: -0.4s;
+    }
+
 /* ------ media queries ------ */
 @media screen and (max-width: 768px){
     .nav-btn{
@@ -103,3 +146,36 @@
         visibility: visible;
     }
 }
+
+/* ------ keyframes ------ */
+@keyframes animate-row{
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-1.5rem, -1.5rem);
+    }
+    50% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(1.5rem, 1.5rem);
+    }
+
+}
+@keyframes animate-txt{
+    0% {        
+        transform: translate(0, -1.5rem);
+    }
+    50% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, 1.5rem);
+    }
+
+}
+
+
