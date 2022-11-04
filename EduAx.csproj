@@ -134,6 +134,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Img\about1.jpg" />
+    <Content Include="Img\about2.jpg" />
     <Content Include="Img\adm1.png" />
     <Content Include="Img\adm2.png" />
     <Content Include="Img\adm3.png" />
@@ -152,6 +154,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\swiper-bundle.min.js" />
     <Content Include="Web.config" />

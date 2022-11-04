@@ -11,55 +11,123 @@
         <div class="slide swiper-slide">
             <img src="~/Img/slider1.jpg" alt="" class="image" />
             <div class="image-data">
-                <span class="text">ladwadadaw</span>
+                <span class="text">come and meet our campus</span>
                 <h2>
-                    lorem ipsum an se <br />
-                    rkadwa khalfum aw
+                    in our facilities you not only study,
+                    you also develop social and artistic skills.
                 </h2>
+                @*<span class="text">ven y conoce nuestro campus</span>
+                <h2>
+                    en nuestras instalaciones no solo estudias, sino
+                    que tambien desarrollas aptitudes sociales y artisticas.
+                </h2>*@
             </div>
         </div>
         <div class="slide swiper-slide">
             <img src="~/Img/slider2.jpg" alt="" class="image" />
             <div class="image-data">
-                <span class="text">ladwadadaw</span>
+                <span class="text">professional training</span>
                 <h2>
-                    lorem ipsum an se <br />
-                    rkadwa khalfum aw
-                </h2>
+                    motivate yourself to learn the most advanced techniques
+                    about CPR, PAS and more
+                </h2> 
+                @*<span class="text">capacitacion profesional</span>
+                <h2>
+                    motivate a aprender las tecnicas mas avanzadas
+                    sobre RCP, PAS y mas
+                </h2>*@
             </div>
         </div>
         <div class="slide swiper-slide">
             <img src="~/Img/slider3.jpg" alt="" class="image" />
             <div class="image-data">
-                <span class="text">ladwadadaw</span>
+                <span class="text">highly skilled tools</span>
                 <h2>
-                    lorem ipsum an se <br />
-                    rkadwa khalfum aw
-                </h2>
+                    Give your career a boost with our latest and
+                    technological tools of the industry
+                </h2>  
+                @*<span class="text">equipos altamente capacitados</span>
+                <h2>
+                    dale un impulso a tu carrera con nuestras mas ultimas y
+                    tecnologicas herramientas de la industria
+                </h2>*@
             </div>
         </div>
     </div>
     <div class="swiper-button-next nav-btn"></div>
     <div class="swiper-button-prev nav-btn"></div>
     <div class="swiper-pagination"></div>
+    <div class="box">
+        <h2>About Us</h2>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </section>
-<div class="box">
-    <h2>About Us</h2>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+<section class="about-info">
+    <div class="container">
+        <div class="content mision">
+            <h2 class="main-title">About us</h2>
+            <div class="collapse-content">
+                <div class="about-image">
+                    <img src="~/Img/about1.jpg" alt="campus about image" />
+                </div>
+                <div class="text-box">
+                    <h3>Mision</h3>
+                    <p>
+                        We are a leading academy in the
+                        technical first aid education,
+                        and quality health services, promoting
+                        Commitment, respect, integrity and responsibility
+                        social
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="content vision">
+            <div class="about-image">
+                <img src="~/Img/about2.jpg" alt="campus about image" />
+            </div>
+            <div class="text-box">
+                <h3>Vision</h3>
+                <p>
+                    To be an academy recognized nationally and internationally
+                    for innovation and educational service in health and first aid,
+                    guaranteeing qualified professionals in the provision of the service
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Link scrl reveal js-->
+<script src="~/Scripts/scrollreveal.js"></script>
+
+<!-- Script scrl animation-->
+<script>
+    ScrollReveal({
+        reset: true,
+        distance: '60px',
+        duration: 1500,
+        delay: 600
+    });
+
+    ScrollReveal().reveal('.main-title', { delay: 400, origin: 'left' });
+    ScrollReveal().reveal('.about-image', { delay: 600, origin: 'bottom' });
+    ScrollReveal().reveal('.text-box', { delay: 500, origin: 'right' });    
+    ScrollReveal().reveal('.box', { delay: 500, origin: 'bottom' });    
+</script>
 
 <!-- Swiper JS -->
 <script src="~/Scripts/swiper-bundle.min.js"></script>
 
 <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper(".mySwiper", {        
+    var swiper = new Swiper(".mySwiper", {
         centeredSlides: true,
         autoplay: {
             delay: 6000,
-            disableOnInteraction: false,            
+            disableOnInteraction: false,
         },
         pagination: {
             el: ".swiper-pagination",
