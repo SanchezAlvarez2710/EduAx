@@ -8,68 +8,70 @@
 
 
 <div class="container">
-<input type="checkbox" id="flip">
+    <input type="checkbox" id="flip">
     <div class="cover">
         <div class="front">
-            <img src="images/frontImg.jpg" alt="">
+            <img src="~/Img/frontImg.jpg" alt="front image" />
             <div class="text">
-                <span class="text-1">Every new friend is a <br> new adventure</span>
+                <span class="text-1">Every new friend is a new adventure</span>
                 <span class="text-2">Let's get connected</span>
             </div>
         </div>
         <div class="back">
-            <img class="backImg" src="images/backImg.jpg" alt="">
+            <img class="backImg" src="~/Img/backImg.jpg" alt="back image" />
             <div class="text">
-                <span class="text-1">Complete miles of journey <br> with one step</span>
+                <span class="text-1">Complete miles of journey <br /> with one step</span>
                 <span class="text-2">Let's get started</span>
             </div>
         </div>
     </div>
-    <div class="forms">
+    <form action="/" method="post">
         <div class="form-content">
             <div class="login-form">
                 <div class="title">Login</div>
-                <form action="#">
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <i class="uil uil-envelope-alt"></i>
-                            <input type="text" placeholder="Enter your email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="uil uil-lock-alt"></i>
-                            <input type="password" placeholder="Enter your password" required>
-                        </div>
-                        <div class="text"><a href="#" class="color">Forgot password?</a></div>
-                        <div class="button input-box">
-                            <input type="submit" value="Sumbit">
-                        </div>
-                        <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+                <div class="input-boxes">
+                    <div class="input-box">
+                        <i class="uil uil-envelope-alt"></i>
+                        <input type="email" placeholder="Enter your email" required />
                     </div>
-                </form>
+                    <div class="input-box">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" placeholder="Enter your password" required />
+                    </div>
+                </div>
+                <div class="text">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="button input-box">
+                    <input type="submit" value="Submit" />
+                </div>
+                <div class="text login-text">
+                    Don't have an account? <label for="flip">SignUp now</label>
+                </div>
             </div>
             <div class="signup-form">
-                <div class="title">Signup</div>
-                <form action="#">
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <i class="uil uil-user"></i>
-                            <input type="text" placeholder="Enter your name" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="uil uil-envelope-alt"></i>
-                            <input type="text" placeholder="Enter your email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="uil uil-lock-alt"></i>
-                            <input type="password" placeholder="Enter your password" required>
-                        </div>
-                        <div class="button input-box">
-                            <input type="submit" value="Sumbit">
-                        </div>
-                        <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                <div class="title">SignUp</div>
+                <div class="input-boxes">
+                    <div class="input-box">
+                        <i class="uil uil-user"></i>
+                        <input type="text" placeholder="Enter your name" required />
                     </div>
-                </form>
+                    <div class="input-box">
+                        <i class="uil uil-envelope-alt"></i>
+                        <input type="email" placeholder="Enter your email" required />
+                    </div>
+                    <div class="input-box">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" placeholder="Enter your password" required />
+                    </div>
+                    <div class="button input-box">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </div>
+                <div class="text sign-up-text">
+                    Already have an account? <label for="flip">Login now</label>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
