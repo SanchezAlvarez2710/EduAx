@@ -53,14 +53,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/Home/Login">
-                        @*
-                            SIGN OUT (LOGOUT)
-                            <i class="uil uil-signout"></i>
-                        *@
-                        <i class="uil uil-signin"></i>
-                        <span class="link-name">Login</span>
-                    </a>
+                    @{ if (Session["usuario"] != null)
+                        {
+                            <a href="/Home/Logout">
+                                <i class="uil uil-signout"></i>
+                                <span class="link-name">Logout</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Home/Login">
+                                <i class="uil uil-signin"></i>
+                                <span class="link-name">Login</span>
+                            </a>
+                        }
+                    }
+
                 </li>
                 <li class="mode">
                     <a href="#">
