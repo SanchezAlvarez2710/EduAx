@@ -103,7 +103,7 @@
     background: #fff;
 }
 
-.container .form-content {
+.form-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
