@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Index.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\swiper-bundle.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -139,7 +140,9 @@
     <Content Include="Img\adm1.png" />
     <Content Include="Img\adm2.png" />
     <Content Include="Img\adm3.png" />
+    <Content Include="Img\backImg.jpg" />
     <Content Include="Img\default.png" />
+    <Content Include="Img\frontImg.jpg" />
     <Content Include="Img\icons8-first-aid-kit-64.png" />
     <Content Include="Img\icons8-mesh-100%28V%29.png" />
     <Content Include="Img\icons8-mesh-50%28V%29.png" />
@@ -169,6 +172,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
