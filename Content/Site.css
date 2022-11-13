@@ -215,6 +215,8 @@ nav.close ~ .main-content{
     z-index: 10;
 }
 
+
+
 .top-nav .left,
 .top-nav .right {
     display: flex;
@@ -232,6 +234,21 @@ nav.close ~ .main-content{
         color: var(--panel-color);
         border-radius: .5rem;        
     }
+
+    .top-nav .right .login-spn{
+        text-transform: uppercase;                
+        font-size: 1.5rem;
+        color: var(--black-light-color);
+    }
+        .top-nav .right .login-spn a {
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .top-nav .right .login-spn a:hover {
+            color: #0b866d;            
+        }
 
 nav.close ~ .main-content .top-nav{
     left: 7.3rem;

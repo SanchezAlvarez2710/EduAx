@@ -68,7 +68,6 @@
                             </a>
                         }
                     }
-
                 </li>
                 <li class="mode">
                     <a href="#">
@@ -89,8 +88,8 @@
                 <h2>You are on > @Html.ActionLink("Home", "Index", "Home")</h2>
             </div>
             <div class="right">
-                <h2>Guest</h2>  @* NOMBRE DE ROLES *@
-                <img src="~/Img/default.png" alt="User avatar" /> @* IMAGEN DE ROLES *@
+                <span class="login-spn">You are currently a guest(@Html.ActionLink("Access", "Login", "Home"))</span> @* NOMBRE DE ROLES *@
+                <!--<img src="~/Img/default.png" alt="User avatar" />--> @* IMAGEN DE ROLES *@
             </div>
         </div>
         <div class="body-content">
