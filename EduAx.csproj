@@ -130,25 +130,42 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelEduAx.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEduAx.Context.tt</DependentUpon>
+    <Compile Include="Models\ADMIN.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelEduAx.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEduAx.tt</DependentUpon>
+    <Compile Include="Models\COURSE.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelEduAx.Designer.cs">
+    <Compile Include="Models\eduAxModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEduAx.edmx</DependentUpon>
+      <DependentUpon>eduAxModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\eduAxModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eduAxModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\eduAxModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eduAxModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GROUP.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PERSON.cs">
-      <DependentUpon>ModelEduAx.tt</DependentUpon>
+      <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModel\Person.cs" />
+    <Compile Include="Models\STUDENT.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_COURSE.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_GROUP.cs">
+      <DependentUpon>eduAxModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,12 +180,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\ModelEduAx.edmx">
+    <EntityDeploy Include="Models\eduAxModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelEduAx.Designer.cs</LastGenOutput>
+      <LastGenOutput>eduAxModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelEduAx.edmx.diagram">
-      <DependentUpon>ModelEduAx.edmx</DependentUpon>
+    <Content Include="Models\eduAxModel.edmx.diagram">
+      <DependentUpon>eduAxModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Img\about1.jpg" />
@@ -189,17 +206,17 @@
     <Content Include="Img\student2.png" />
     <Content Include="Img\teacher1.png" />
     <Content Include="Img\teacher2.png" />
-    <Content Include="Models\ModelEduAx.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelEduAx.Context.cs</LastGenOutput>
-      <DependentUpon>ModelEduAx.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelEduAx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEduAx.edmx</DependentUpon>
-      <LastGenOutput>ModelEduAx.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Models\eduAxModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>eduAxModel.edmx</DependentUpon>
+      <LastGenOutput>eduAxModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\eduAxModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>eduAxModel.edmx</DependentUpon>
+      <LastGenOutput>eduAxModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />

@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li>
-                    @{ if (Session["usuario"] != null)
+                    @{ if (Session["user"] != null)
                         {
                             <a href="/Home/Logout">
                                 <i class="uil uil-signout"></i>
@@ -86,9 +86,12 @@
         <div class="top-nav">
             <div class="left">
                 <i class="uil uil-bars sidebar-toggle"></i>
-                <h2>You are on > @Html.ActionLink("Home", "", "")</h2>
+                <h2>You are on > @Html.ActionLink("Home", "Index", "Home")</h2>
             </div>
-            <img src="~/Img/default.png" alt="User avatar" />
+            <div class="right">
+                <h2>Guest</h2>  @* NOMBRE DE ROLES *@
+                <img src="~/Img/default.png" alt="User avatar" /> @* IMAGEN DE ROLES *@
+            </div>
         </div>
         <div class="body-content">
             @RenderBody()

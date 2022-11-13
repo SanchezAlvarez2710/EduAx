@@ -215,7 +215,8 @@ nav.close ~ .main-content{
     z-index: 10;
 }
 
-.top-nav .left{
+.top-nav .left,
+.top-nav .right {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -243,7 +244,7 @@ nav.close ~ .main-content .top-nav{
         cursor: pointer;
     }
     
-    .top-nav img{
+    .top-nav .right img{
         width: 4rem;        
         border-radius: 50%;
     }

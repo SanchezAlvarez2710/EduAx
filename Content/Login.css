@@ -8,6 +8,12 @@
     font-family: "Poppins", sans-serif;
 }
 
+.body-content{
+    margin: 0;
+    justify-content: center;
+    height: 100%;
+}
+
 .container {
     position: relative;
     max-width: 850px;
@@ -30,23 +36,13 @@
         transform-style: preserve-3d;
     }
 
-    .container #flip:checked ~ .cover {
-        transform: rotateY(-180deg);
-    }
-
-    .container .cover .front,
-    .container .cover .back {
+    .container .cover .front {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
     }
-
-.cover .back {
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-}
 
 .container .cover::before,
 .container .cover::after {
@@ -109,8 +105,7 @@
     justify-content: space-between;
 }
 
-.form-content .login-form,
-.form-content .signup-form {
+.form-content .login-form {
     width: calc(100% / 2 - 25px);
 }
 
@@ -188,6 +183,10 @@
         .forms .form-content .text a:hover {
             text-decoration: underline;
         }
+
+.alert-danger{
+    color: red;    
+}
 
 .forms .form-content .button {
     color: #fff;

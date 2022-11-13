@@ -14,10 +14,15 @@ namespace EduAx.Models
     
     public partial class PERSON
     {
-        public int id_person { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string rol { get; set; }
+        public decimal ID_PERSON { get; set; }
+        public string NAME_PERSON { get; set; }
+        public string EMAIL_PERSON { get; set; }
+        public string PASS_PERSON { get; set; }
+        public string ROLE_PERSON { get; set; }
+        public string AVATAR_PERSON { get; set; }
+    
+        public virtual ADMIN ADMIN { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
+        public virtual GROUP GROUP { get; set; }
     }
 }
