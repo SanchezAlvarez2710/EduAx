@@ -127,44 +127,45 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ADMIN.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COURSE.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\eduAxModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>eduAxModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\eduAxModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>eduAxModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\eduAxModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>eduAxModel.edmx</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GROUP.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEduAx.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEduAx.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEduAx.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEduAx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEduAx.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PERSON.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STUDENT.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STUDENT_COURSE.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STUDENT_GROUP.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
+      <DependentUpon>ModelEduAx.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,6 +174,7 @@
     <Content Include="App_Data\eduAx_log.ldf">
       <DependentUpon>eduAx.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Courses.css" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\swiper-bundle.min.css" />
@@ -180,12 +182,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\eduAxModel.edmx">
+    <EntityDeploy Include="Models\ModelEduAx.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>eduAxModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelEduAx.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\eduAxModel.edmx.diagram">
-      <DependentUpon>eduAxModel.edmx</DependentUpon>
+    <Content Include="Models\ModelEduAx.edmx.diagram">
+      <DependentUpon>ModelEduAx.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Img\about1.jpg" />
@@ -207,15 +209,15 @@
     <Content Include="Img\teacher1.png" />
     <Content Include="Img\teacher2.png" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
-    <Content Include="Models\eduAxModel.Context.tt">
+    <Content Include="Models\ModelEduAx.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>eduAxModel.edmx</DependentUpon>
-      <LastGenOutput>eduAxModel.Context.cs</LastGenOutput>
+      <DependentUpon>ModelEduAx.edmx</DependentUpon>
+      <LastGenOutput>ModelEduAx.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\eduAxModel.tt">
+    <Content Include="Models\ModelEduAx.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>eduAxModel.edmx</DependentUpon>
-      <LastGenOutput>eduAxModel.cs</LastGenOutput>
+      <DependentUpon>ModelEduAx.edmx</DependentUpon>
+      <LastGenOutput>ModelEduAx.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
@@ -244,6 +246,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.1.min.map" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\Dash.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

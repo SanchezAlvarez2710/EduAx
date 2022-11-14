@@ -1,0 +1,90 @@
+﻿@model IEnumerable<EduAx.Models.COURSE>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Courses.css" rel="stylesheet" />
+@{
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        int inx = 1;
+        <div class="container">
+            <div class="main-title">@Html.DisplayFor(Model => Model.ElementAt(i).TYPE_COURSE)<i class="uil uil-medkit"></i></div>
+            @while (Model.ElementAt(i).TYPE_COURSE == Model.ElementAt(i + 1).TYPE_COURSE)
+            {
+                <div class="box">
+                    <div class="icon">
+                        @inx
+                    </div>
+                    <div class="content">
+                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
+                        <p>
+                            @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
+                        </p>
+                        @Html.ActionLink("Read More", "Dash", "Courses")
+                    </div>
+                </div>
+                i++;
+                inx++;
+                if (i + 1 >= Model.Count())
+                {
+                    <div class="box">
+                        <div class="icon">
+                            @inx
+                        </div>
+                        <div class="content">
+                            <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
+                            <p>
+                                @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
+                            </p>
+                            @Html.ActionLink("Read More", "Dash", "Courses")
+                        </div>
+                    </div>
+                    break;
+                }
+            }
+            @if (i + 1 < Model.Count())
+            {
+                <div class="box">
+                    <div class="icon">
+                        @inx
+                    </div>
+                    <div class="content">
+                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
+                        <p>
+                            @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
+                        </p>
+                        @Html.ActionLink("Read More", "Dash", "Courses")
+                    </div>
+                </div>                
+            }
+        </div>
+    }
+}
+
+
+
+<!-- Link scrl reveal js-->
+<script src="~/Scripts/scrollreveal.js"></script>
+
+<!-- Script scrl animation-->
+<script>
+    ScrollReveal({
+        reset: true,
+        distance: '60px',
+        duration: 1500,
+        delay: 600
+    });
+
+    ScrollReveal().reveal('.main-title', { delay: 400, origin: 'bottom' });
+    ScrollReveal().reveal('.about-image', { delay: 600, origin: 'bottom' });
+    ScrollReveal().reveal('.text-box', { delay: 500, origin: 'right' });
+    //ScrollReveal().reveal('.box', { delay: 500, origin: 'bottom' });
+
+    const guide = document.querySelector(".main-content .top-nav .left h2");
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home")> @Html.ActionLink("Courses", "Index", "Courses")';
+</script>
+
+

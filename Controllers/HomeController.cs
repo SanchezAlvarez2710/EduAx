@@ -58,7 +58,6 @@ namespace EduAx.Controllers
             ViewData["Message"] = "Incorrect password or user";
             return View();
         }
-
         public static string ConvertToSha256(string text)
         {            
             //USAR LA REFERENCIA DE "System.Security.Cryptography"

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EduAx.Models.COURSE>
+
+@{
+    ViewBag.Title = "Dash";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dash</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME_COURSE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TYPE_COURSE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INFO_COURSE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME_COURSE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TYPE_COURSE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INFO_COURSE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_COURSE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_COURSE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_COURSE })
+        </td>
+    </tr>
+}
+
+</table>

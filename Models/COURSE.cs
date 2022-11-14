@@ -23,6 +23,8 @@ namespace EduAx.Models
     
         public decimal ID_COURSE { get; set; }
         public string NAME_COURSE { get; set; }
+        public string TYPE_COURSE { get; set; }
+        public string INFO_COURSE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDENT_COURSE> STUDENT_COURSE { get; set; }

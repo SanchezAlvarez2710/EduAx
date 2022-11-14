@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eduAxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID_ADMIN" />
+          </Key>
+          <Property Name="ID_ADMIN" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID_COURSE" />
+          </Key>
+          <Property Name="ID_COURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NAME_COURSE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TYPE_COURSE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="INFO_COURSE" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GROUP">
+          <Key>
+            <PropertyRef Name="ID_GROUP" />
+          </Key>
+          <Property Name="ID_GROUP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'D:\ESTUDIO\POLITECNICO\2022 - 2\PROYECTO SW\ENTREGAS\M. AGIL\DESARROLLO\EDUAX\APP_DATA\EDUAX.MDF.dbo.GROUP_COURSE' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="GROUP_COURSE">
+          <Key>
+            <PropertyRef Name="ID_COURSE" />
+            <PropertyRef Name="ID_GROUP" />
+          </Key>
+          <Property Name="ID_COURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID_PERSON" />
+          </Key>
+          <Property Name="ID_PERSON" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NAME_PERSON" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_PERSON" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="PASS_PERSON" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ROLE_PERSON" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AVATAR_PERSON" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'D:\ESTUDIO\POLITECNICO\2022 - 2\PROYECTO SW\ENTREGAS\M. AGIL\DESARROLLO\EDUAX\APP_DATA\EDUAX.MDF.dbo.STUDENT_COURSE' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="STUDENT_COURSE">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+            <PropertyRef Name="ID_COURSE" />
+            <PropertyRef Name="STGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="NDGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="RDGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="THGRADE_STUDENTCOURSE" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_COURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NDGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RDGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="THGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'D:\ESTUDIO\POLITECNICO\2022 - 2\PROYECTO SW\ENTREGAS\M. AGIL\DESARROLLO\EDUAX\APP_DATA\EDUAX.MDF.dbo.STUDENT_GROUP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="STUDENT_GROUP">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+            <PropertyRef Name="ID_GROUP" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PLACES_STUDENTGROUP" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TEACHER">
+          <Key>
+            <PropertyRef Name="ID_TEACHER" />
+          </Key>
+          <Property Name="ID_TEACHER" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FKADMIN_PERSON">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID_PERSON" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="ID_ADMIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGROUPCOURSE_COURSE">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="GROUP_COURSE" Type="Self.GROUP_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Principal>
+            <Dependent Role="GROUP_COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGROUPCOURSE_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="GROUP_COURSE" Type="Self.GROUP_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="GROUP_COURSE">
+              <PropertyRef Name="ID_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENT_PERSON">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID_PERSON" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_COURSE">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_STUDENT">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTGROUP_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="STUDENT_GROUP" Type="Self.STUDENT_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="STUDENT_GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTGROUP_STUDENT">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+          <End Role="STUDENT_GROUP" Type="Self.STUDENT_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Principal>
+            <Dependent Role="STUDENT_GROUP">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTEACHER_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="TEACHER">
+              <PropertyRef Name="ID_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKTEACHER_PERSON">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID_PERSON" />
+            </Principal>
+            <Dependent Role="TEACHER">
+              <PropertyRef Name="ID_TEACHER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="eduAxModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GROUP" EntityType="Self.GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEACHER" EntityType="Self.TEACHER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GROUP_COURSE" EntityType="Self.GROUP_COURSE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GROUP_COURSE].[ID_COURSE] AS [ID_COURSE], 
+    [GROUP_COURSE].[ID_GROUP] AS [ID_GROUP]
+    FROM [dbo].[GROUP_COURSE] AS [GROUP_COURSE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="STUDENT_COURSE" EntityType="Self.STUDENT_COURSE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [STUDENT_COURSE].[ID_STUDENT] AS [ID_STUDENT], 
+    [STUDENT_COURSE].[ID_COURSE] AS [ID_COURSE], 
+    [STUDENT_COURSE].[STGRADE_STUDENTCOURSE] AS [STGRADE_STUDENTCOURSE], 
+    [STUDENT_COURSE].[NDGRADE_STUDENTCOURSE] AS [NDGRADE_STUDENTCOURSE], 
+    [STUDENT_COURSE].[RDGRADE_STUDENTCOURSE] AS [RDGRADE_STUDENTCOURSE], 
+    [STUDENT_COURSE].[THGRADE_STUDENTCOURSE] AS [THGRADE_STUDENTCOURSE]
+    FROM [dbo].[STUDENT_COURSE] AS [STUDENT_COURSE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="STUDENT_GROUP" EntityType="Self.STUDENT_GROUP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [STUDENT_GROUP].[ID_STUDENT] AS [ID_STUDENT], 
+    [STUDENT_GROUP].[ID_GROUP] AS [ID_GROUP], 
+    [STUDENT_GROUP].[PLACES_STUDENTGROUP] AS [PLACES_STUDENTGROUP]
+    FROM [dbo].[STUDENT_GROUP] AS [STUDENT_GROUP]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FKADMIN_PERSON" Association="Self.FKADMIN_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="FKGROUPCOURSE_COURSE" Association="Self.FKGROUPCOURSE_COURSE">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="GROUP_COURSE" EntitySet="GROUP_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKGROUPCOURSE_GROUP" Association="Self.FKGROUPCOURSE_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="GROUP_COURSE" EntitySet="GROUP_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENT_PERSON" Association="Self.FKSTUDENT_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_COURSE" Association="Self.FKSTUDENTCOURSE_COURSE">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_STUDENT" Association="Self.FKSTUDENTCOURSE_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTGROUP_GROUP" Association="Self.FKSTUDENTGROUP_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="STUDENT_GROUP" EntitySet="STUDENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTGROUP_STUDENT" Association="Self.FKSTUDENTGROUP_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_GROUP" EntitySet="STUDENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FKTEACHER_GROUP" Association="Self.FKTEACHER_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="TEACHER" EntitySet="TEACHER" />
+          </AssociationSet>
+          <AssociationSet Name="FKTEACHER_PERSON" Association="Self.FKTEACHER_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="TEACHER" EntitySet="TEACHER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eduAxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID_ADMIN" />
+          </Key>
+          <Property Name="ID_ADMIN" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PERSON" Relationship="Self.FKADMIN_PERSON" FromRole="ADMIN" ToRole="PERSON" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="ID_COURSE" />
+          </Key>
+          <Property Name="ID_COURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NAME_COURSE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TYPE_COURSE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INFO_COURSE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="STUDENT_COURSE" Relationship="Self.FKSTUDENTCOURSE_COURSE" FromRole="COURSE" ToRole="STUDENT_COURSE" />
+          <NavigationProperty Name="GROUP" Relationship="Self.GROUP_COURSE" FromRole="COURSE" ToRole="GROUP" />
+        </EntityType>
+        <EntityType Name="GROUP">
+          <Key>
+            <PropertyRef Name="ID_GROUP" />
+          </Key>
+          <Property Name="ID_GROUP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="STUDENT_GROUP" Relationship="Self.FKSTUDENTGROUP_GROUP" FromRole="GROUP" ToRole="STUDENT_GROUP" />
+          <NavigationProperty Name="PERSON" Relationship="Self.TEACHER" FromRole="GROUP" ToRole="PERSON" />
+          <NavigationProperty Name="COURSE" Relationship="Self.GROUP_COURSE" FromRole="GROUP" ToRole="COURSE" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID_PERSON" />
+          </Key>
+          <Property Name="ID_PERSON" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NAME_PERSON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_PERSON" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASS_PERSON" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROLE_PERSON" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVATAR_PERSON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FKADMIN_PERSON" FromRole="PERSON" ToRole="ADMIN" />
+          <NavigationProperty Name="STUDENT" Relationship="Self.FKSTUDENT_PERSON" FromRole="PERSON" ToRole="STUDENT" />
+          <NavigationProperty Name="GROUP" Relationship="Self.TEACHER" FromRole="PERSON" ToRole="GROUP" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PERSON" Relationship="Self.FKSTUDENT_PERSON" FromRole="STUDENT" ToRole="PERSON" />
+          <NavigationProperty Name="STUDENT_COURSE" Relationship="Self.FKSTUDENTCOURSE_STUDENT" FromRole="STUDENT" ToRole="STUDENT_COURSE" />
+          <NavigationProperty Name="STUDENT_GROUP" Relationship="Self.FKSTUDENTGROUP_STUDENT" FromRole="STUDENT" ToRole="STUDENT_GROUP" />
+        </EntityType>
+        <EntityType Name="STUDENT_COURSE">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+            <PropertyRef Name="ID_COURSE" />
+            <PropertyRef Name="STGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="NDGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="RDGRADE_STUDENTCOURSE" />
+            <PropertyRef Name="THGRADE_STUDENTCOURSE" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_COURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NDGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RDGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="THGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="COURSE" Relationship="Self.FKSTUDENTCOURSE_COURSE" FromRole="STUDENT_COURSE" ToRole="COURSE" />
+          <NavigationProperty Name="STUDENT" Relationship="Self.FKSTUDENTCOURSE_STUDENT" FromRole="STUDENT_COURSE" ToRole="STUDENT" />
+        </EntityType>
+        <EntityType Name="STUDENT_GROUP">
+          <Key>
+            <PropertyRef Name="ID_STUDENT" />
+            <PropertyRef Name="ID_GROUP" />
+          </Key>
+          <Property Name="ID_STUDENT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PLACES_STUDENTGROUP" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="GROUP" Relationship="Self.FKSTUDENTGROUP_GROUP" FromRole="STUDENT_GROUP" ToRole="GROUP" />
+          <NavigationProperty Name="STUDENT" Relationship="Self.FKSTUDENTGROUP_STUDENT" FromRole="STUDENT_GROUP" ToRole="STUDENT" />
+        </EntityType>
+        <Association Name="FKADMIN_PERSON">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID_PERSON" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="ID_ADMIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_COURSE">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
+              <PropertyRef Name="ID_COURSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTGROUP_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="STUDENT_GROUP" Type="Self.STUDENT_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="STUDENT_GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENT_PERSON">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID_PERSON" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_STUDENT">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTGROUP_STUDENT">
+          <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+          <End Role="STUDENT_GROUP" Type="Self.STUDENT_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID_STUDENT" />
+            </Principal>
+            <Dependent Role="STUDENT_GROUP">
+              <PropertyRef Name="ID_STUDENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TEACHER">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+        </Association>
+        <Association Name="GROUP_COURSE">
+          <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="eduAxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" />
+          <EntitySet Name="COURSE" EntityType="Self.COURSE" />
+          <EntitySet Name="GROUP" EntityType="Self.GROUP" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" />
+          <EntitySet Name="STUDENT" EntityType="Self.STUDENT" />
+          <EntitySet Name="STUDENT_COURSE" EntityType="Self.STUDENT_COURSE" />
+          <EntitySet Name="STUDENT_GROUP" EntityType="Self.STUDENT_GROUP" />
+          <AssociationSet Name="FKADMIN_PERSON" Association="Self.FKADMIN_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_COURSE" Association="Self.FKSTUDENTCOURSE_COURSE">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTGROUP_GROUP" Association="Self.FKSTUDENTGROUP_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="STUDENT_GROUP" EntitySet="STUDENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENT_PERSON" Association="Self.FKSTUDENT_PERSON">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="STUDENT" EntitySet="STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_STUDENT" Association="Self.FKSTUDENTCOURSE_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
+          <AssociationSet Name="FKSTUDENTGROUP_STUDENT" Association="Self.FKSTUDENTGROUP_STUDENT">
+            <End Role="STUDENT" EntitySet="STUDENT" />
+            <End Role="STUDENT_GROUP" EntitySet="STUDENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="TEACHER" Association="Self.TEACHER">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="PERSON" EntitySet="PERSON" />
+          </AssociationSet>
+          <AssociationSet Name="GROUP_COURSE" Association="Self.GROUP_COURSE">
+            <End Role="COURSE" EntitySet="COURSE" />
+            <End Role="GROUP" EntitySet="GROUP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eduAxModelStoreContainer" CdmEntityContainer="eduAxEntities">
+          <EntitySetMapping Name="ADMIN">
+            <EntityTypeMapping TypeName="eduAxModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="ID_ADMIN" ColumnName="ID_ADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COURSE">
+            <EntityTypeMapping TypeName="eduAxModel.COURSE">
+              <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="ID_COURSE" ColumnName="ID_COURSE" />
+                <ScalarProperty Name="NAME_COURSE" ColumnName="NAME_COURSE" />
+                <ScalarProperty Name="TYPE_COURSE" ColumnName="TYPE_COURSE" />
+                <ScalarProperty Name="INFO_COURSE" ColumnName="INFO_COURSE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GROUP">
+            <EntityTypeMapping TypeName="eduAxModel.GROUP">
+              <MappingFragment StoreEntitySet="GROUP">
+                <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSON">
+            <EntityTypeMapping TypeName="eduAxModel.PERSON">
+              <MappingFragment StoreEntitySet="PERSON">
+                <ScalarProperty Name="ID_PERSON" ColumnName="ID_PERSON" />
+                <ScalarProperty Name="NAME_PERSON" ColumnName="NAME_PERSON" />
+                <ScalarProperty Name="EMAIL_PERSON" ColumnName="EMAIL_PERSON" />
+                <ScalarProperty Name="PASS_PERSON" ColumnName="PASS_PERSON" />
+                <ScalarProperty Name="ROLE_PERSON" ColumnName="ROLE_PERSON" />
+                <ScalarProperty Name="AVATAR_PERSON" ColumnName="AVATAR_PERSON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENT">
+            <EntityTypeMapping TypeName="eduAxModel.STUDENT">
+              <MappingFragment StoreEntitySet="STUDENT">
+                <ScalarProperty Name="ID_STUDENT" ColumnName="ID_STUDENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENT_COURSE">
+            <EntityTypeMapping TypeName="eduAxModel.STUDENT_COURSE">
+              <MappingFragment StoreEntitySet="STUDENT_COURSE">
+                <ScalarProperty Name="ID_STUDENT" ColumnName="ID_STUDENT" />
+                <ScalarProperty Name="ID_COURSE" ColumnName="ID_COURSE" />
+                <ScalarProperty Name="STGRADE_STUDENTCOURSE" ColumnName="STGRADE_STUDENTCOURSE" />
+                <ScalarProperty Name="NDGRADE_STUDENTCOURSE" ColumnName="NDGRADE_STUDENTCOURSE" />
+                <ScalarProperty Name="RDGRADE_STUDENTCOURSE" ColumnName="RDGRADE_STUDENTCOURSE" />
+                <ScalarProperty Name="THGRADE_STUDENTCOURSE" ColumnName="THGRADE_STUDENTCOURSE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENT_GROUP">
+            <EntityTypeMapping TypeName="eduAxModel.STUDENT_GROUP">
+              <MappingFragment StoreEntitySet="STUDENT_GROUP">
+                <ScalarProperty Name="ID_STUDENT" ColumnName="ID_STUDENT" />
+                <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
+                <ScalarProperty Name="PLACES_STUDENTGROUP" ColumnName="PLACES_STUDENTGROUP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TEACHER" TypeName="eduAxModel.TEACHER" StoreEntitySet="TEACHER">
+            <EndProperty Name="GROUP">
+              <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
+            </EndProperty>
+            <EndProperty Name="PERSON">
+              <ScalarProperty Name="ID_PERSON" ColumnName="ID_TEACHER" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GROUP_COURSE" TypeName="eduAxModel.GROUP_COURSE" StoreEntitySet="GROUP_COURSE">
+            <EndProperty Name="COURSE">
+              <ScalarProperty Name="ID_COURSE" ColumnName="ID_COURSE" />
+            </EndProperty>
+            <EndProperty Name="GROUP">
+              <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
