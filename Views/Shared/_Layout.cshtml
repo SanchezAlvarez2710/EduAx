@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var oUser = (EduAx.Models.PERSON)HttpContext.Current.Session["user"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,10 +36,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="uil uil-signal-alt-3"></i>
-                        <span class="link-name progress">My progress</span>
-                    </a>
+                    @{
+                        if (Session["user"] != null)
+                        {
+                            switch (oUser.ROLE_PERSON.ToLower())
+                            {
+                                case "student":
+                                    <a href="#">
+                                        <i class="uil uil-signal-alt-3"></i>
+                                        <span class="link-name progress">Trayectory</span>
+                                    </a>
+                                    break;
+                            }
+                        }
+                    }
                 </li>
                 <li>
                     <a href="#">
@@ -88,8 +101,17 @@
                 <h2>You are on > @Html.ActionLink("Home", "Index", "Home")</h2>
             </div>
             <div class="right">
-                <span class="login-spn">You are currently a guest(@Html.ActionLink("Access", "Login", "Home"))</span> @* NOMBRE DE ROLES *@
-                <!--<img src="~/Img/default.png" alt="User avatar" />--> @* IMAGEN DE ROLES *@
+                @{
+                    if (Session["user"] == null)
+                    {
+                        <span class="login-spn">You are currently a guest(@Html.ActionLink("Access", "Login", "Home"))</span> 
+                    }
+                    else
+                    {
+                        <span class="login-spn">@oUser.NAME_PERSON</span> 
+                        <img src="~/Img/@oUser.AVATAR_PERSON" alt="User avatar" /> 
+                    }
+                }
             </div>
         </div>
         <div class="body-content">

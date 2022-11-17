@@ -35,6 +35,7 @@ namespace EduAx.Controllers
                                          select new
                                          {
                                             ID_PERSON = (int)P.ID_PERSON,
+                                            NAME_PERSON = P.NAME_PERSON,
                                             EMAIL_PERSON = P.EMAIL_PERSON,
                                             PASS_PERSON = P.PASS_PERSON,
                                             ROLE_PERSON = P.ROLE_PERSON,
@@ -42,18 +43,16 @@ namespace EduAx.Controllers
                                          }).AsEnumerable().Select(x => new PERSON
                                          {
                                              ID_PERSON = (int)x.ID_PERSON,
+                                             NAME_PERSON = x.NAME_PERSON,
                                              EMAIL_PERSON = x.EMAIL_PERSON,
                                              PASS_PERSON = x.PASS_PERSON,
                                              ROLE_PERSON = x.ROLE_PERSON,
                                              AVATAR_PERSON = x.AVATAR_PERSON
                                          }).ToList();
             if (access.Any())
-            {
-                var condicion = access.ElementAt(0).ROLE_PERSON.ToLower();
-                oUser.ROLE_PERSON = condicion;
-                Session["user"] = oUser;
+            {                
+                Session["user"] = access.ElementAt(0);
                 return RedirectToAction("Index", "Home");
-
             }
             ViewData["Message"] = "Incorrect password or user";
             return View();

@@ -241,7 +241,7 @@ nav.close ~ .main-content{
     }
         .top-nav .right .login-spn a {
             color: var(--primary-color);
-            cursor: pointer;
+            /*cursor: pointer;*/
             text-decoration: none;
         }
 

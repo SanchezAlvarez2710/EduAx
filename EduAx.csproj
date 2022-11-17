@@ -194,6 +194,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>eduAxModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Img\master.png" />
     <Content Include="Models\eduAxModel.edmx.diagram">
       <DependentUpon>eduAxModel.edmx</DependentUpon>
     </Content>
@@ -204,7 +205,6 @@
     <Content Include="Img\adm2.png" />
     <Content Include="Img\adm3.png" />
     <Content Include="Img\backImg.jpg" />
-    <Content Include="Img\default.png" />
     <Content Include="Img\frontImg.jpg" />
     <Content Include="Img\icons8-first-aid-kit-64.png" />
     <Content Include="Img\icons8-mesh-100%28V%29.png" />
