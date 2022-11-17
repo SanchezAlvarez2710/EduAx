@@ -6,8 +6,8 @@
 
 <link href="~/Content/Login.css" rel="stylesheet" />
 
-<div class="container">    
-    <div class="cover">  
+<div class="container">
+    <div class="cover">
         <div class="front">
             <img src="~/Img/frontImg.jpg" alt="">
             <div class="text">
@@ -20,7 +20,7 @@
         <div class="form-content">
             <div class="login-form">
                 <div class="title">Login</div>
-                <form action="@Url.Action("Login","Home")"method="post">
+                <form action="@Url.Action("Login","Home")" method="post">
                     <div class="input-boxes">
                         <div class="input-box">
                             <i class="uil uil-envelope-alt"></i>
@@ -43,13 +43,25 @@
                         <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
                     </div>
                 </form>
-            </div>           
+            </div>
         </div>
     </div>
 </div>
+<!-- Link scrl reveal js-->
+<script src="~/Scripts/scrollreveal.js"></script>
+
+<!-- Script scrl animation-->
 <script>
     const guide = document.querySelector(".main-content .top-nav .left h2");
     guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home")> @Html.ActionLink("Login", "Login", "Home")';
+
+    ScrollReveal({
+        //reset: true,
+        distance: '60px',
+        duration: 1500,
+        delay: 600
+    });
+    ScrollReveal().reveal('.container', { delay: 400, origin: 'bottom' });
 </script>
 
 

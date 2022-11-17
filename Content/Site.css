@@ -215,18 +215,17 @@ nav.close ~ .main-content{
     z-index: 10;
 }
 
-
-
-.top-nav .left,
-.top-nav .right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
+    .top-nav .left,
+    .top-nav .right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
     .top-nav .left h2 a {
         color: var(--primary-color);
         padding: .4rem 1rem;
         text-decoration: none;
+        text-transform: lowercase;
     }
 
     .top-nav .left h2 a:hover {

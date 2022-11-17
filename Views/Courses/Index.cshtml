@@ -19,11 +19,8 @@
                         @inx
                     </div>
                     <div class="content">
-                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
-                        <p>
-                            @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
-                        </p>
-                        @Html.ActionLink("Read More", "Dash", "Courses")
+                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>                  
+                        @Html.ActionLink("Read More", "Dash", "Courses", new {id_course = Model.ElementAt(i).ID_COURSE}, null)
                     </div>
                 </div>
                 i++;
@@ -35,11 +32,8 @@
                             @inx
                         </div>
                         <div class="content">
-                            <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
-                            <p>
-                                @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
-                            </p>
-                            @Html.ActionLink("Read More", "Dash", "Courses")
+                            <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>                      
+                            @Html.ActionLink("Read More", "Dash", "Courses", new { id_course = Model.ElementAt(i).ID_COURSE }, null)
                         </div>
                     </div>
                     break;
@@ -52,11 +46,8 @@
                         @inx
                     </div>
                     <div class="content">
-                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>
-                        <p>
-                            @Html.DisplayFor(Model => Model.ElementAt(i).INFO_COURSE)
-                        </p>
-                        @Html.ActionLink("Read More", "Dash", "Courses")
+                        <h3>@Html.DisplayFor(Model => Model.ElementAt(i).NAME_COURSE)</h3>                     
+                        @Html.ActionLink("Read More", "Dash", "Courses", new { id_course = Model.ElementAt(i).ID_COURSE }, null)
                     </div>
                 </div>                
             }

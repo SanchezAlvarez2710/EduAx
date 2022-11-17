@@ -1,4 +1,4 @@
-﻿@model EduAx.Models.COURSE
+﻿@model IEnumerable<EduAx.Models.COURSE>
 
 @{
     ViewBag.Title = "Dash";
@@ -7,18 +7,16 @@
 
 <link href="~/Content/Dash_Courses.css" rel="stylesheet" />
 <div class="dash-top">
-    <img src="~/Img/faid4.png" />
+    <img src="~/Img/faid4.png" /> @* IMAGE_COURSE ATRIBUTO BASE DE DATOS [COURSE]*@
     <div class="main-title">
         <div class="icon">
-            <i class="uil uil-medkit"></i>
+            <i class="@Html.DisplayFor(Model => Model.ElementAt(0).ICON_COURSE)"></i>
         </div>
-        <h2 class="text">First Aid Basics 1</h2>
+        <h2 class="text">@Html.DisplayFor(Model => Model.ElementAt(0).NAME_COURSE)</h2>
     </div>
     <div class="desc">
         <p>
-            Ut fusce varius nisl ac ipsum gravida vel
-            pretium tellus tincidunt integer eu augue augue
-            nunc elit dolor, luctus placerat.
+            @Html.DisplayFor(Model => Model.ElementAt(0).INFO_COURSE)
         </p>
     </div>
     <div class="content">
@@ -28,7 +26,7 @@
             </div>
             <div class="box-info">
                 <h3>Places</h3>
-                <h2>20</h2>
+                <h2>30</h2>
             </div>
         </div>
         <div class="box-content">
@@ -53,7 +51,7 @@
 
     </div>
 </div>
-<script>
+<script>    
     const guide = document.querySelector(".main-content .top-nav .left h2");
-    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink("First Aid Basics 1", "Dash", "Courses")';
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).NAME_COURSE, "Dash", "Courses", new { id_course = Model.ElementAt(0).ID_COURSE }, null)';
 </script>
