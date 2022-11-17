@@ -11,7 +11,7 @@ namespace EduAx.Controllers
 {
     public class HomeController : Controller
     {
-        private eduAxEntities db = new eduAxEntities();
+        private eduAxDatabaseEntities db = new eduAxDatabaseEntities();
         public ActionResult Index()
         {
             return View();

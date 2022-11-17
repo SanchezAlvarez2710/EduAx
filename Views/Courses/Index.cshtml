@@ -11,7 +11,7 @@
     {
         int inx = 1;
         <div class="container">
-            <div class="main-title">@Html.DisplayFor(Model => Model.ElementAt(i).TYPE_COURSE)<i class="uil uil-medkit"></i></div>
+            <div class="main-title">@Html.DisplayFor(Model => Model.ElementAt(i).TYPE_COURSE)<i class="@Html.DisplayFor(Model => Model.ElementAt(i).ICON_COURSE)"></i></div>
             @while (Model.ElementAt(i).TYPE_COURSE == Model.ElementAt(i + 1).TYPE_COURSE)
             {
                 <div class="box">
@@ -64,27 +64,21 @@
     }
 }
 
-
-
 <!-- Link scrl reveal js-->
 <script src="~/Scripts/scrollreveal.js"></script>
 
 <!-- Script scrl animation-->
 <script>
     ScrollReveal({
-        reset: true,
+        //reset: true,
         distance: '60px',
         duration: 1500,
         delay: 600
     });
-
-    ScrollReveal().reveal('.main-title', { delay: 400, origin: 'bottom' });
-    ScrollReveal().reveal('.about-image', { delay: 600, origin: 'bottom' });
-    ScrollReveal().reveal('.text-box', { delay: 500, origin: 'right' });
-    //ScrollReveal().reveal('.box', { delay: 500, origin: 'bottom' });
+    ScrollReveal().reveal('.container', { delay: 400, origin: 'bottom' });
 
     const guide = document.querySelector(".main-content .top-nav .left h2");
-    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home")> @Html.ActionLink("Courses", "Index", "Courses")';
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses")';
 </script>
 
 

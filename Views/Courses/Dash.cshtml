@@ -1,46 +1,59 @@
-﻿@model IEnumerable<EduAx.Models.COURSE>
+﻿@model EduAx.Models.COURSE
 
 @{
     ViewBag.Title = "Dash";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dash</h2>
+<link href="~/Content/Dash_Courses.css" rel="stylesheet" />
+<div class="dash-top">
+    <img src="~/Img/faid4.png" />
+    <div class="main-title">
+        <div class="icon">
+            <i class="uil uil-medkit"></i>
+        </div>
+        <h2 class="text">First Aid Basics 1</h2>
+    </div>
+    <div class="desc">
+        <p>
+            Ut fusce varius nisl ac ipsum gravida vel
+            pretium tellus tincidunt integer eu augue augue
+            nunc elit dolor, luctus placerat.
+        </p>
+    </div>
+    <div class="content">
+        <div class="box-content">
+            <div class="icon">
+                <i class="uil uil-user-check"></i>
+            </div>
+            <div class="box-info">
+                <h3>Places</h3>
+                <h2>20</h2>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="icon">
+                <i class="uil uil-users-alt"></i>
+            </div>
+            <div class="box-info">
+                <h3>Groups</h3>
+                <h2>5</h2>
+            </div>
+        </div>
+    </div>
+    <a href="/"><span>Enroll</span></a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NAME_COURSE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TYPE_COURSE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.INFO_COURSE)
-        </th>
-        <th></th>
-    </tr>
+</div>
+<div class="dash-body">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME_COURSE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TYPE_COURSE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.INFO_COURSE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_COURSE }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_COURSE }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_COURSE })
-        </td>
-    </tr>
-}
+    <div class="grades">
 
-</table>
+    </div>
+    <div class="final-grade">
+
+    </div>
+</div>
+<script>
+    const guide = document.querySelector(".main-content .top-nav .left h2");
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink("First Aid Basics 1", "Dash", "Courses")';
+</script>

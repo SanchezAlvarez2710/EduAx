@@ -14,6 +14,12 @@ namespace EduAx.Models
     
     public partial class PERSON
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PERSON()
+        {
+            this.TEACHER = new HashSet<TEACHER>();
+        }
+    
         public decimal ID_PERSON { get; set; }
         public string NAME_PERSON { get; set; }
         public string EMAIL_PERSON { get; set; }
@@ -23,6 +29,7 @@ namespace EduAx.Models
     
         public virtual ADMIN ADMIN { get; set; }
         public virtual STUDENT STUDENT { get; set; }
-        public virtual GROUP GROUP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEACHER> TEACHER { get; set; }
     }
 }

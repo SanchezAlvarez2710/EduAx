@@ -17,18 +17,19 @@ namespace EduAx.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public COURSE()
         {
+            this.GROUP_COURSE = new HashSet<GROUP_COURSE>();
             this.STUDENT_COURSE = new HashSet<STUDENT_COURSE>();
-            this.GROUP = new HashSet<GROUP>();
         }
     
         public decimal ID_COURSE { get; set; }
         public string NAME_COURSE { get; set; }
         public string TYPE_COURSE { get; set; }
         public string INFO_COURSE { get; set; }
+        public string ICON_COURSE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STUDENT_COURSE> STUDENT_COURSE { get; set; }
+        public virtual ICollection<GROUP_COURSE> GROUP_COURSE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GROUP> GROUP { get; set; }
+        public virtual ICollection<STUDENT_COURSE> STUDENT_COURSE { get; set; }
     }
 }

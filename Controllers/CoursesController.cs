@@ -9,7 +9,7 @@ namespace EduAx.Controllers
 {
     public class CoursesController : Controller
     {
-        private eduAxEntities db = new eduAxEntities();
+        private eduAxDatabaseEntities db = new eduAxDatabaseEntities();
         // GET: Courses
         public ActionResult Index()
         {

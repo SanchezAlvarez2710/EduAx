@@ -14,9 +14,9 @@ namespace EduAx.Models
     
     public partial class STUDENT_GROUP
     {
+        public decimal ID_STUDENTGROUP { get; set; }
         public decimal ID_STUDENT { get; set; }
         public decimal ID_GROUP { get; set; }
-        public Nullable<decimal> PLACES_STUDENTGROUP { get; set; }
     
         public virtual GROUP GROUP { get; set; }
         public virtual STUDENT STUDENT { get; set; }
