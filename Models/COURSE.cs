@@ -26,6 +26,7 @@ namespace EduAx.Models
         public string TYPE_COURSE { get; set; }
         public string INFO_COURSE { get; set; }
         public string ICON_COURSE { get; set; }
+        public string IMAGE_COURSE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GROUP_COURSE> GROUP_COURSE { get; set; }

@@ -17,7 +17,7 @@ namespace EduAx.Models
         public decimal ID_GROUPCOURSE { get; set; }
         public decimal ID_COURSE { get; set; }
         public decimal ID_GROUP { get; set; }
-        public decimal PLACES_STUDENTGROUP { get; set; }
+        public decimal PLACES_GROUPCOURSE { get; set; }
     
         public virtual COURSE COURSE { get; set; }
         public virtual GROUP GROUP { get; set; }

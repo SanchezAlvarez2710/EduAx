@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EduAx.Models.COURSE>
+﻿@model IEnumerable<EduAx.Models.ViewModel.course_student>
 
 @{
     ViewBag.Title = "Dash";
@@ -10,13 +10,13 @@
     <img src="~/Img/faid4.png" /> @* IMAGE_COURSE ATRIBUTO BASE DE DATOS [COURSE]*@
     <div class="main-title">
         <div class="icon">
-            <i class="@Html.DisplayFor(Model => Model.ElementAt(0).ICON_COURSE)"></i>
+            <i class="@Html.DisplayFor(Model => Model.ElementAt(0).icon_course)"></i>
         </div>
-        <h2 class="text">@Html.DisplayFor(Model => Model.ElementAt(0).NAME_COURSE)</h2>
+        <h2 class="text">@Html.DisplayFor(Model => Model.ElementAt(0).name_course)</h2>
     </div>
     <div class="desc">
         <p>
-            @Html.DisplayFor(Model => Model.ElementAt(0).INFO_COURSE)
+            @Html.DisplayFor(Model => Model.ElementAt(0).info_course)
         </p>
     </div>
     <div class="content">
@@ -51,7 +51,7 @@
 
     </div>
 </div>
-<script>    
+<script>
     const guide = document.querySelector(".main-content .top-nav .left h2");
-    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).NAME_COURSE, "Dash", "Courses", new { id_course = Model.ElementAt(0).ID_COURSE }, null)';
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
 </script>
