@@ -1,13 +1,15 @@
-﻿@model IEnumerable<EduAx.Models.ViewModel.course_student>
+﻿@using EduAx.Models.ViewModel
+@model IEnumerable<EduAx.Models.ViewModel.Global>
 
 @{
     ViewBag.Title = "Dash";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var oUser = (EduAx.Models.PERSON)HttpContext.Current.Session["user"];
 }
 
 <link href="~/Content/Dash_Courses.css" rel="stylesheet" />
 <div class="dash-top">
-    <img src="~/Img/faid4.png" /> @* IMAGE_COURSE ATRIBUTO BASE DE DATOS [COURSE]*@
+    <img src="~/Img/@Html.DisplayFor(Model => Model.ElementAt(0).image_course)" /> @* IMAGE_COURSE ATRIBUTO BASE DE DATOS [COURSE]*@
     <div class="main-title">
         <div class="icon">
             <i class="@Html.DisplayFor(Model => Model.ElementAt(0).icon_course)"></i>
@@ -26,7 +28,7 @@
             </div>
             <div class="box-info">
                 <h3>Places</h3>
-                <h2>30</h2>
+                <h2>@Html.DisplayFor(Model => Model.ElementAt(0).places_groupcourse)</h2>
             </div>
         </div>
         <div class="box-content">
@@ -35,15 +37,13 @@
             </div>
             <div class="box-info">
                 <h3>Groups</h3>
-                <h2>5</h2>
+                <h2>@Html.DisplayFor(Model => Model.ElementAt(0).groups_count)</h2>
             </div>
         </div>
     </div>
     <a href="/"><span>Enroll</span></a>
-
 </div>
 <div class="dash-body">
-
     <div class="grades">
 
     </div>
@@ -52,6 +52,27 @@
     </div>
 </div>
 <script>
-    const guide = document.querySelector(".main-content .top-nav .left h2");
-    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
+
+  const guide = document.querySelector(".main-content .top-nav .left h2");
+  guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
 </script>
+
+@* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
+@if (oUser != null)
+{
+
+    if (oUser.ROLE_PERSON.ToLower().Equals("student"))
+    {
+        <style>
+            .dash-top a::before {
+                background: #fc6a6a;
+            }
+        </style>
+    }
+}
+else
+{
+
+}
+
+

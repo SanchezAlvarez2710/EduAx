@@ -21,6 +21,7 @@ namespace EduAx.Models
         public decimal NDGRADE_STUDENTCOURSE { get; set; }
         public decimal RDGRADE_STUDENTCOURSE { get; set; }
         public decimal THGRADE_STUDENTCOURSE { get; set; }
+        public decimal TIMES_STUDENTCOURSE { get; set; }
         public string STATE_STUDENTCOURSE { get; set; }
     
         public virtual COURSE COURSE { get; set; }
