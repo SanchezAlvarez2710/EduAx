@@ -16,6 +16,11 @@
         </div>
         <h2 class="text">@Html.DisplayFor(Model => Model.ElementAt(0).name_course)</h2>
     </div>
+    @if (oUser != null)
+    {
+        <h3 class="course-status">Current status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_student)</span></h3>
+        <h3 class="course-attempts">Attempts remaining: <span>@(2 - (int)(Model.ElementAt(0).course_count))</span></h3>
+    }
     <div class="desc">
         <p>
             @Html.DisplayFor(Model => Model.ElementAt(0).info_course)
@@ -52,7 +57,8 @@
     </div>
 </div>
 <script>
-
+    const status = document.querySelector(".course-status span");
+  const button = document.querySelector(".dash-top a span");
   const guide = document.querySelector(".main-content .top-nav .left h2");
   guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
 </script>
@@ -60,19 +66,74 @@
 @* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
 @if (oUser != null)
 {
-
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))
     {
-        <style>
-            .dash-top a::before {
-                background: #fc6a6a;
-            }
-        </style>
+        if (Model.ElementAt(0).course_count == 2 || Model.ElementAt(0).state_student.ToLower().Equals("done"))
+        {
+            <script>
+                document.querySelector(".dash-top a").remove();
+            </script>
+        }
+        switch (Model.ElementAt(0).state_student.ToLower())
+        {
+            case "to do":
+                <style>
+                    .course-status span {
+                        background: var(--text-color);
+                    }
+                </style>
+                break;
+            case "doing":
+                <style>
+                    .dash-top a::before {
+                        background: #fc6a6a;
+                    }
+
+                    .course-status span {
+                        background: var(--secondary-color);
+                    }
+                </style>
+                <script>
+                    button.innerHTML = "Cancel";
+                </script>
+                break;
+            case "cancelled":
+                <style>
+                    .course-status span {
+                        background: #fc6a6a;
+                    }
+                </style>
+                break;
+            case "flunked":
+                <style>
+                    .course-status span {
+                        background-color: red;
+                    }
+                </style>
+                break;
+            default:
+                <style>
+                    .course-status span {
+                        background: var(--primary-color);
+                    }
+                </style>
+                <script>
+                    document.querySelector(".course-attempts").remove();
+                </script>
+                break;
+        }
     }
 }
 else
 {
-
+    <style>
+        .dash-top a::before {
+            background: var(--primary-color);
+        }
+    </style>
+    <script>
+        button.innerHTML = "Enroll";
+    </script>
 }
 
 

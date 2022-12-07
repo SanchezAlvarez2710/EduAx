@@ -41,8 +41,11 @@ namespace EduAx.Controllers
                                                               where gc.ID_COURSE == id_course
                                                               select gc).Count(),                                             
                                           }).ToList();
-            oCourse.ElementAt(0).places_groupcourse = (int)(oCourse.ElementAt(0).places_groupcourse + oCourse.ElementAt(1).places_groupcourse);
-            oCourse.RemoveAt(1);
+            for(int i = 1; i < oCourse.Count; i++)
+            {
+                oCourse.ElementAt(0).places_groupcourse += oCourse.ElementAt(i).places_groupcourse;
+                //oCourse.RemoveAt(i);
+            }                        
             if (oUser != null)
             {
                 switch (oUser.ROLE_PERSON.ToLower())
@@ -59,6 +62,10 @@ namespace EduAx.Controllers
                         {
                             oCourse.ElementAt(0).course_count = (int)oStudent.ElementAt(0).course_count;
                             oCourse.ElementAt(0).state_student = oStudent.ElementAt(0).state_student;
+                        } else
+                        {
+                            oCourse.ElementAt(0).course_count = 0;
+                            oCourse.ElementAt(0).state_student = "TO DO";
                         }
                         break;
                     case "teacher":

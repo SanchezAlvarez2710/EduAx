@@ -12,10 +12,22 @@
     width: 100%;
 }
 
-    .dash-top img {
-        grid-column: 2;
-        grid-row: 1 / span 4;
+.course-status, .course-attempts {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+    .course-status span {        
+        color: #FFF;
+        border-radius: .5rem;
+        padding: 0 .8rem;
     }
+
+.dash-top img {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+}
 
 .main-title {
     display: flex;
@@ -95,11 +107,12 @@
 
     .dash-top a::before {
         content: '';
+        background: var(--primary-color);
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
-        height: 100%;        
+        height: 100%;
         transition: .5s ease-in-out;
     }
 
