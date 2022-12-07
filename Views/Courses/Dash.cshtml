@@ -55,13 +55,14 @@
 @* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
 @if (oUser != null)
 {
-    if (Model.ElementAt(0).state_student.ToLower().Equals("done") || Model.ElementAt(0).state_student.ToLower().Equals("doing"))
+    if (Model.ElementAt(0).state_student.ToLower().Equals("done") || 
+        Model.ElementAt(0).state_student.ToLower().Equals("doing"))
     {
-        <section class="modal">
-            <div class="modal-container">
-                <h2 class="modal-title">My grades</h2>
+        <section class="modal-grades">
+            <div class="modal-grades-container">
+                <h2 class="modal-grades-title">My grades</h2>
                 <hr />
-                <img src="~/Img/grades.png" alt="Thumb Grades Image" class="modal-img" />
+                <img src="~/Img/grades.png" alt="Thumb Grades Image" class="modal-grades-img" />
                 <div class="grades">
                     <h2 class="average-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>                    
                     <p class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)<span>25%</span></p>
@@ -69,17 +70,17 @@
                     <p class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)<span>25%</span></p>
                     <p class="grade4">@Html.DisplayFor(Model => Model.ElementAt(0).thgrade)<span>25%</span></p>
                 </div>
-                <a href="" class="modal-close">Close</a>
+                <a href="" class="modal-grades-close">Close</a>
             </div>
         </section>
     }
 
     <script>
-    //guide and constants
-    const status = document.querySelector(".course-status span");
-    const button = document.querySelector(".dash-top .btn-action span");
-    const guide = document.querySelector(".main-content .top-nav .left h2");
-    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
+        //guide and constants
+        const status = document.querySelector(".course-status span");
+        const button = document.querySelector(".dash-top .btn-action span");
+        const guide = document.querySelector(".main-content .top-nav .left h2");
+        guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
     </script>
 
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))

@@ -15,7 +15,7 @@ ScrollReveal().reveal('.teacher-status', { delay: 700, origin: 'bottom' });
 ScrollReveal().reveal('.group-status', { delay: 800, origin: 'bottom' });
 ScrollReveal().reveal('.desc', { delay: 900, origin: 'bottom' });
 ScrollReveal().reveal('.content', { delay: 1000, origin: 'bottom' });
-ScrollReveal().reveal('.dash-top a', { delay: 1100, origin: 'bottom' });
+ScrollReveal().reveal('.dash-top .btn-action', { delay: 1100, origin: 'bottom' });
 ////MODAL
 //ScrollReveal().reveal('.modal-title', { delay: 500, origin: 'right' });
 //ScrollReveal().reveal('hr', { delay: 600, origin: 'bottom' });
@@ -30,8 +30,8 @@ ScrollReveal().reveal('.dash-top a', { delay: 1100, origin: 'bottom' });
 
 //OPEN-MODAL
 const openModal = document.querySelector('.hero-cta');
-const modal = document.querySelector('.modal');
-const closeModal = document.querySelector('.modal-close');
+const modal = document.querySelector('.modal-grades');
+const closeModal = document.querySelector('.modal-grades-close');
 
 openModal.addEventListener('click', (e) => {
     e.preventDefault();
