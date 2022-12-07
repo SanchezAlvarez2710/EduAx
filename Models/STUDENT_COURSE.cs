@@ -17,14 +17,16 @@ namespace EduAx.Models
         public decimal ID_STUDENTCOURSE { get; set; }
         public decimal ID_STUDENT { get; set; }
         public decimal ID_COURSE { get; set; }
-        public decimal STGRADE_STUDENTCOURSE { get; set; }
-        public decimal NDGRADE_STUDENTCOURSE { get; set; }
-        public decimal RDGRADE_STUDENTCOURSE { get; set; }
-        public decimal THGRADE_STUDENTCOURSE { get; set; }
+        public decimal ID_GROUP { get; set; }
+        public float STGRADE_STUDENTCOURSE { get; set; }
+        public float NDGRADE_STUDENTCOURSE { get; set; }
+        public float RDGRADE_STUDENTCOURSE { get; set; }
+        public float THGRADE_STUDENTCOURSE { get; set; }
         public decimal TIMES_STUDENTCOURSE { get; set; }
         public string STATE_STUDENTCOURSE { get; set; }
     
         public virtual COURSE COURSE { get; set; }
+        public virtual GROUP GROUP { get; set; }
         public virtual STUDENT STUDENT { get; set; }
     }
 }

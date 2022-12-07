@@ -20,10 +20,10 @@ namespace EduAx.Models.ViewModel
         public int places_groupcourse { get; set; }
         //STUDENT_COURSE
         public int id_student { get; set; }     //STUDENT
-        public int stgrade { get; set; }
-        public int ndgrade { get; set; }
-        public int rdgrade { get; set; }
-        public int thgrade { get; set; }
+        public float stgrade { get; set; }
+        public float ndgrade { get; set; }
+        public float rdgrade { get; set; }
+        public float thgrade { get; set; }
         public string state_student { get; set; }
        //TEACHER
         public int id_teacher { get; set; }

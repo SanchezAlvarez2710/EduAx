@@ -61,10 +61,11 @@
           <Property Name="ID_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_STUDENT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ID_COURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="STGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="NDGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="RDGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="THGRADE_STUDENTCOURSE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STGRADE_STUDENTCOURSE" Type="real" Nullable="false" />
+          <Property Name="NDGRADE_STUDENTCOURSE" Type="real" Nullable="false" />
+          <Property Name="RDGRADE_STUDENTCOURSE" Type="real" Nullable="false" />
+          <Property Name="THGRADE_STUDENTCOURSE" Type="real" Nullable="false" />
           <Property Name="TIMES_STUDENTCOURSE" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="STATE_STUDENTCOURSE" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
@@ -141,6 +142,18 @@
             </Principal>
             <Dependent Role="STUDENT_COURSE">
               <PropertyRef Name="ID_COURSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
+              <PropertyRef Name="ID_GROUP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -234,6 +247,10 @@
             <End Role="COURSE" EntitySet="COURSE" />
             <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
           </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_GROUP" Association="Self.FKSTUDENTCOURSE_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
           <AssociationSet Name="FKSTUDENTCOURSE_STUDENT" Association="Self.FKSTUDENTCOURSE_STUDENT">
             <End Role="STUDENT" EntitySet="STUDENT" />
             <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
@@ -286,6 +303,7 @@
           </Key>
           <Property Name="ID_GROUP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="GROUP_COURSE" Relationship="Self.FKGROUPCOURSE_GROUP" FromRole="GROUP" ToRole="GROUP_COURSE" />
+          <NavigationProperty Name="STUDENT_COURSE" Relationship="Self.FKSTUDENTCOURSE_GROUP" FromRole="GROUP" ToRole="STUDENT_COURSE" />
           <NavigationProperty Name="STUDENT_GROUP" Relationship="Self.FKSTUDENTGROUP_GROUP" FromRole="GROUP" ToRole="STUDENT_GROUP" />
           <NavigationProperty Name="TEACHER" Relationship="Self.FKTEACHER_GROUP" FromRole="GROUP" ToRole="TEACHER" />
         </EntityType>
@@ -330,13 +348,15 @@
           <Property Name="ID_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_STUDENT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ID_COURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="STGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="NDGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="RDGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="THGRADE_STUDENTCOURSE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_GROUP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STGRADE_STUDENTCOURSE" Type="Single" Nullable="false" />
+          <Property Name="NDGRADE_STUDENTCOURSE" Type="Single" Nullable="false" />
+          <Property Name="RDGRADE_STUDENTCOURSE" Type="Single" Nullable="false" />
+          <Property Name="THGRADE_STUDENTCOURSE" Type="Single" Nullable="false" />
           <Property Name="TIMES_STUDENTCOURSE" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="STATE_STUDENTCOURSE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="COURSE" Relationship="Self.FKSTUDENTCOURSE_COURSE" FromRole="STUDENT_COURSE" ToRole="COURSE" />
+          <NavigationProperty Name="GROUP" Relationship="Self.FKSTUDENTCOURSE_GROUP" FromRole="STUDENT_COURSE" ToRole="GROUP" />
           <NavigationProperty Name="STUDENT" Relationship="Self.FKSTUDENTCOURSE_STUDENT" FromRole="STUDENT_COURSE" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="STUDENT_GROUP">
@@ -403,6 +423,18 @@
               <PropertyRef Name="ID_GROUP" />
             </Principal>
             <Dependent Role="GROUP_COURSE">
+              <PropertyRef Name="ID_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKSTUDENTCOURSE_GROUP">
+          <End Role="GROUP" Type="Self.GROUP" Multiplicity="1" />
+          <End Role="STUDENT_COURSE" Type="Self.STUDENT_COURSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GROUP">
+              <PropertyRef Name="ID_GROUP" />
+            </Principal>
+            <Dependent Role="STUDENT_COURSE">
               <PropertyRef Name="ID_GROUP" />
             </Dependent>
           </ReferentialConstraint>
@@ -505,6 +537,10 @@
             <End Role="GROUP" EntitySet="GROUP" />
             <End Role="GROUP_COURSE" EntitySet="GROUP_COURSE" />
           </AssociationSet>
+          <AssociationSet Name="FKSTUDENTCOURSE_GROUP" Association="Self.FKSTUDENTCOURSE_GROUP">
+            <End Role="GROUP" EntitySet="GROUP" />
+            <End Role="STUDENT_COURSE" EntitySet="STUDENT_COURSE" />
+          </AssociationSet>
           <AssociationSet Name="FKSTUDENTGROUP_GROUP" Association="Self.FKSTUDENTGROUP_GROUP">
             <End Role="GROUP" EntitySet="GROUP" />
             <End Role="STUDENT_GROUP" EntitySet="STUDENT_GROUP" />
@@ -597,6 +633,7 @@
                 <ScalarProperty Name="ID_STUDENTCOURSE" ColumnName="ID_STUDENTCOURSE" />
                 <ScalarProperty Name="ID_STUDENT" ColumnName="ID_STUDENT" />
                 <ScalarProperty Name="ID_COURSE" ColumnName="ID_COURSE" />
+                <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
                 <ScalarProperty Name="STGRADE_STUDENTCOURSE" ColumnName="STGRADE_STUDENTCOURSE" />
                 <ScalarProperty Name="NDGRADE_STUDENTCOURSE" ColumnName="NDGRADE_STUDENTCOURSE" />
                 <ScalarProperty Name="RDGRADE_STUDENTCOURSE" ColumnName="RDGRADE_STUDENTCOURSE" />

@@ -1,6 +1,6 @@
 ﻿.body-content {
     align-items: flex-start;
-    margin: 10rem 0 0 2rem;
+    margin: 8rem 0 0 2rem;
 }
 
 .dash-top {
@@ -12,13 +12,24 @@
     width: 100%;
 }
 
-.course-status, .course-attempts {
+.course-status, .course-attempts, .group-status {
     font-size: 1.5rem;
     display: flex;
     gap: 1rem;
 }
 
     .course-status span {        
+        color: #FFF;
+        border-radius: .5rem;
+        padding: 0 .8rem;
+    }
+
+    .group-status{
+        display: none;
+    }
+
+    .group-status span {
+        background: #6a88fd;
         color: #FFF;
         border-radius: .5rem;
         padding: 0 .8rem;
@@ -132,9 +143,88 @@
         color: #FFF;
     }
 
+.box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(-50%, 0);
+    bottom: 12%;
+    left: 50%;
+    z-index: 3;
+}
+
+    .box h2 {
+        color: var(--text-color);
+        animation: animate-txt 2s infinite;
+        font-size: 2rem;
+    }
+
+    .box span {
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        border-bottom: 3px solid var(--text-color);
+        border-right: 3px solid var(--text-color);
+        transform: rotate(45deg);
+        margin: -.1rem;
+        animation: animate-row 2s infinite;
+    }
+
+        .box span:nth-last-child(2) {
+            animation-delay: -0.2s;
+        }
+
+        .box span:nth-last-child(1) {
+            animation-delay: -0.4s;
+        }
+
 .dash-body {
     position: relative;
-    width: 100%;
-    padding: 10rem 0 0 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 23rem 0 10rem 0;
+    width: 100%;  
+    font-size: 1.2rem;
+}
+    .dash-body div{
+        padding: 0 2rem;
+    }
+
+    .dash-body .grade1, .dash-body .grade3 {
+        padding: 2rem;
+        background: #DDD;
+    }
+
+/* ------ keyframes ------ */
+@keyframes animate-row {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-1.5rem, -1.5rem);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(1.5rem, 1.5rem);
+    }
+}
+
+@keyframes animate-txt {
+    0% {
+        transform: translate(0, -1.5rem);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, 1.5rem);
+    }
 }

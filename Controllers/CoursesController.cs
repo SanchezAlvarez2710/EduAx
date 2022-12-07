@@ -35,7 +35,6 @@ namespace EduAx.Controllers
                                               info_course = c.INFO_COURSE,
                                               icon_course = c.ICON_COURSE,
                                               image_course = c.IMAGE_COURSE,
-                                              id_group = (int)gc.ID_GROUP,
                                               places_groupcourse = (int)gc.PLACES_GROUPCOURSE,
                                               groups_count = (from gc in db.GROUP_COURSE
                                                               where gc.ID_COURSE == id_course
@@ -55,11 +54,21 @@ namespace EduAx.Controllers
                                   where sc.ID_STUDENT == oUser.ID_PERSON && sc.ID_COURSE == id_course
                                   select new Global
                                   {
+                                      id_group = (int)sc.ID_GROUP,
+                                      stgrade = (float)sc.STGRADE_STUDENTCOURSE,
+                                      ndgrade = (float)sc.NDGRADE_STUDENTCOURSE,
+                                      rdgrade = (float)sc.RDGRADE_STUDENTCOURSE,
+                                      thgrade = (float)sc.THGRADE_STUDENTCOURSE,
                                       course_count = (int)sc.TIMES_STUDENTCOURSE,
                                       state_student = sc.STATE_STUDENTCOURSE
                                   }).ToList();
                         if (oStudent.Count() > 0)
                         {
+                            oCourse.ElementAt(0).id_group = oStudent.ElementAt(0).id_group;
+                            oCourse.ElementAt(0).stgrade = oStudent.ElementAt(0).stgrade;
+                            oCourse.ElementAt(0).ndgrade = oStudent.ElementAt(0).ndgrade;
+                            oCourse.ElementAt(0).rdgrade = oStudent.ElementAt(0).rdgrade;
+                            oCourse.ElementAt(0).thgrade = oStudent.ElementAt(0).thgrade;
                             oCourse.ElementAt(0).course_count = (int)oStudent.ElementAt(0).course_count;
                             oCourse.ElementAt(0).state_student = oStudent.ElementAt(0).state_student;
                         } else
