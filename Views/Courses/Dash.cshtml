@@ -8,6 +8,7 @@
 }
 
 <link href="~/Content/Dash_Courses.css" rel="stylesheet" />
+
 <div class="dash-top">
     <img class="img-course" src="~/Img/@Html.DisplayFor(Model => Model.ElementAt(0).image_course)" /> @* IMAGE_COURSE ATRIBUTO BASE DE DATOS [COURSE]*@
     <div class="main-title">
@@ -15,12 +16,14 @@
             <i class="@Html.DisplayFor(Model => Model.ElementAt(0).icon_course)"></i>
         </div>
         <h2 class="text">@Html.DisplayFor(Model => Model.ElementAt(0).name_course)</h2>
+        <a href="#" class="hero-cta"><i class="uil uil-info-circle"></i></a>
     </div>
     @if (oUser != null)
     {
         <h3 class="course-status">Current status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_student)</span></h3>
-        <h3 class="group-status">My group: <span>@Html.DisplayFor(Model => Model.ElementAt(0).id_group)</span></h3>
         <h3 class="course-attempts">Attempts remaining: <span>@(2 - (int)(Model.ElementAt(0).course_count))</span></h3>
+        <h3 class="teacher-status">Linked teacher: <span>@Html.DisplayFor(Model => Model.ElementAt(0).name_person)</span></h3>
+        <h3 class="group-status">My group: <span>@Html.DisplayFor(Model => Model.ElementAt(0).id_group)</span></h3>
     }
     <div class="desc">
         <p>
@@ -47,45 +50,46 @@
             </div>
         </div>
     </div>
-    <a href="/"><span>Enroll</span></a>
+    <a href="/" class="btn-action"><span>Enroll</span></a>
 </div>
-@if (Model.ElementAt(0).state_student.ToLower().Equals("done")) {
-    <div class="box">
-        <h2>My grades</h2>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="dash-body">
-        <h2 class="final-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>
-        <hr />
-        <div class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)</div>
-        <div class="grade2">@Html.DisplayFor(Model => Model.ElementAt(0).ndgrade)</div>
-        <div class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)</div>
-        <div class="grade4">@Html.DisplayFor(Model => Model.ElementAt(0).thgrade)</div>    
-    </div>
-}
-<script>
-  const status = document.querySelector(".course-status span");
-  const button = document.querySelector(".dash-top a span");
-  const guide = document.querySelector(".main-content .top-nav .left h2");
-  guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
-</script>
-
 @* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
 @if (oUser != null)
 {
+    if (Model.ElementAt(0).state_student.ToLower().Equals("done") || Model.ElementAt(0).state_student.ToLower().Equals("doing"))
+    {
+        <section class="modal">
+            <div class="modal-container">
+                <h2 class="modal-title">My grades</h2>
+                <hr />
+                <img src="~/Img/grades.png" alt="Thumb Grades Image" class="modal-img" />
+                <div class="grades">
+                    <h2 class="average-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>                    
+                    <p class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)<span>25%</span></p>
+                    <p class="grade2">@Html.DisplayFor(Model => Model.ElementAt(0).ndgrade)<span>25%</span></p>
+                    <p class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)<span>25%</span></p>
+                    <p class="grade4">@Html.DisplayFor(Model => Model.ElementAt(0).thgrade)<span>25%</span></p>
+                </div>
+                <a href="" class="modal-close">Close</a>
+            </div>
+        </section>
+    }
+
+    <script>
+    //guide and constants
+    const status = document.querySelector(".course-status span");
+    const button = document.querySelector(".dash-top .btn-action span");
+    const guide = document.querySelector(".main-content .top-nav .left h2");
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
+    </script>
+
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))
     {
-        if (Model.ElementAt(0).course_count == 2 || Model.ElementAt(0).state_student.ToLower().Equals("done"))
+        if (!Model.ElementAt(0).state_student.ToLower().Equals("doing") &&
+            Model.ElementAt(0).course_count == 2 ||
+            Model.ElementAt(0).state_student.ToLower().Equals("done"))
         {
-            <style>
-                .group-status{
-                    display: flex;
-                }
-            </style>
             <script>
-                document.querySelector(".dash-top a").remove();
+                document.querySelector(".dash-top .btn-action").remove();
             </script>
         }
         switch (Model.ElementAt(0).state_student.ToLower())
@@ -99,12 +103,16 @@
                 break;
             case "doing":
                 <style>
-                    .dash-top a::before {
+                    .dash-top .btn-action::before {
                         background: #fc6a6a;
                     }
 
                     .course-status span {
                         background: var(--secondary-color);
+                    }
+
+                    .group-status, .teacher-status {
+                        display: flex;
                     }
                 </style>
                 <script>
@@ -141,7 +149,7 @@
 else
 {
     <style>
-        .dash-top a::before {
+        .dash-top .btn-action::before {
             background: var(--primary-color);
         }
     </style>
@@ -149,35 +157,7 @@ else
         button.innerHTML = "Enroll";
     </script>
 }
-
 <!-- Link scrl reveal js-->
 <script src="~/Scripts/scrollreveal.js"></script>
-
-<!-- Script scrl animation-->
-<script>
-    ScrollReveal({
-        reset: false,
-        distance: '60px',
-        duration: 1500,
-        delay: 600
-    });
-
-    ScrollReveal().reveal('.main-title', { delay: 400, origin: 'right' });
-    ScrollReveal().reveal('.img-course', { delay: 600, origin: 'top' });
-    ScrollReveal().reveal('.course-status', { delay: 500, origin: 'bottom' });
-    ScrollReveal().reveal('.group-status', { delay: 600, origin: 'bottom' });
-    ScrollReveal().reveal('.course-attempts', { delay: 700, origin: 'bottom' });
-    ScrollReveal().reveal('.desc', { delay: 800, origin: 'bottom' });
-    ScrollReveal().reveal('.content', { delay: 900, origin: 'bottom' });
-    ScrollReveal().reveal('.dash-top a', { delay: 1000, origin: 'bottom' });
-    ScrollReveal().reveal('.box', { delay: 1600, origin: 'bottom' });
-    ScrollReveal().reveal('.final-grade', { delay: 500, origin: 'right' });
-    ScrollReveal().reveal('hr', { delay: 1200, origin: 'right' });
-    ScrollReveal().reveal('.grade1', { delay: 500, origin: 'bottom' });
-    ScrollReveal().reveal('.grade2', { delay: 600, origin: 'bottom' });
-    ScrollReveal().reveal('.grade3', { delay: 700, origin: 'bottom' });
-    ScrollReveal().reveal('.grade4', { delay: 800, origin: 'bottom' });    
-
-</script>
-
+<script src="~/Scripts/Dash_Courses.js"></script>
 

@@ -190,12 +190,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Img\faid4.png" />
+    <Content Include="Img\clcr.png" />
+    <Content Include="Img\faid.png" />
+    <Content Include="Img\grades.png" />
     <Content Include="Img\master.png" />
     <EntityDeploy Include="Models\eduAxModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>eduAxModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Img\prm.png" />
+    <Content Include="Img\rcpt.gif" />
     <Content Include="Models\eduAxModel.edmx.diagram">
       <DependentUpon>eduAxModel.edmx</DependentUpon>
     </Content>
@@ -228,6 +232,7 @@
       <DependentUpon>eduAxModel.edmx</DependentUpon>
       <LastGenOutput>eduAxModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\Dash_Courses.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
