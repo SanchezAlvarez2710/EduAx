@@ -276,3 +276,22 @@ nav.close ~ .main-content .top-nav{
     font-size: 5rem;
 }
 /*FOOTER*/
+
+/* ------ SCROLLBAR-CUSTOM ------ */
+::-webkit-scrollbar{
+    width: 1.5rem;
+}
+
+    ::-webkit-scrollbar-thumb{
+        border-radius: 3rem;
+        background: #DDD;
+        border: none;
+    }
+
+        ::-webkit-scrollbar-thumb:hover{
+            background: var(--black-light-color);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF;
+        }

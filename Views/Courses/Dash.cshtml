@@ -50,12 +50,19 @@
             </div>
         </div>
     </div>
-    <a href="/" class="btn-action"><span>Enroll</span></a>
+    <a href="#" class="btn-action"><span>Enroll</span></a>
 </div>
+<script>
+        //guide and constants
+        const status = document.querySelector(".course-status span");
+        const button = document.querySelector(".dash-top .btn-action span");
+        const guide = document.querySelector(".main-content .top-nav .left h2");
+        guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
+</script>
 @* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
 @if (oUser != null)
 {
-    if (Model.ElementAt(0).state_student.ToLower().Equals("done") || 
+    if (Model.ElementAt(0).state_student.ToLower().Equals("done") ||
         Model.ElementAt(0).state_student.ToLower().Equals("doing"))
     {
         <section class="modal-grades">
@@ -64,7 +71,7 @@
                 <hr />
                 <img src="~/Img/grades.png" alt="Thumb Grades Image" class="modal-grades-img" />
                 <div class="grades">
-                    <h2 class="average-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>                    
+                    <h2 class="average-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>
                     <p class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)<span>25%</span></p>
                     <p class="grade2">@Html.DisplayFor(Model => Model.ElementAt(0).ndgrade)<span>25%</span></p>
                     <p class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)<span>25%</span></p>
@@ -74,14 +81,36 @@
             </div>
         </section>
     }
-
-    <script>
-        //guide and constants
-        const status = document.querySelector(".course-status span");
-        const button = document.querySelector(".dash-top .btn-action span");
-        const guide = document.querySelector(".main-content .top-nav .left h2");
-        guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Courses", "Index", "Courses") > @Html.ActionLink(Model.ElementAt(0).name_course , "Dash", "Courses", new { id_course = Model.ElementAt(0).id_course}, null)';
-    </script>
+    else
+    {
+        <section class="modal-enroll">
+            <div class="modal-enroll-container">
+                <h2 class="modal-enroll-title">Enrolling</h2>
+                <hr />
+                <h2 class="enroll-title">Please select your group</h2>
+                <div class="container-enroll">
+                    @for (int i = 1; i < Model.Count(); i++)
+                    {
+                        <a href="/Courses/Enroll?id_course=@Html.DisplayFor(Model => Model.ElementAt(0).id_course)&id_group=@Html.DisplayFor(Model => Model.ElementAt(i).id_group)">
+                            Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)
+                            <i class="uil uil-info-circle icon">
+                                <span class="tooltip-box">
+                                    <span><b>Linked teacher: </b>@Html.DisplayFor(Model => Model.ElementAt(i).name_person)</span>
+                                    <span><b>Teacher email: </b> @Html.DisplayFor(Model => Model.ElementAt(i).email)</span>
+                                    <span><b>Places course: </b> @Html.DisplayFor(Model => Model.ElementAt(i).places_groupcourse)</span>
+                                </span>
+                            </i>                           
+                        </a>                        
+                        if (i + 1 < Model.Count())
+                        {
+                            <hr />
+                        }
+                    }
+                </div>
+                <a href="#" class="modal-enroll-close">Close</a>
+            </div>
+        </section>
+    }
 
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))
     {
@@ -101,6 +130,9 @@
                         background: var(--text-color);
                     }
                 </style>
+                <script>
+                    document.querySelector(".hero-cta").remove();
+                </script>
                 break;
             case "doing":
                 <style>
@@ -126,6 +158,9 @@
                         background: #fc6a6a;
                     }
                 </style>
+                <script>
+                    document.querySelector(".hero-cta").remove();
+                </script>
                 break;
             case "flunked":
                 <style>
@@ -133,6 +168,9 @@
                         background-color: red;
                     }
                 </style>
+                <script>
+                    document.querySelector(".hero-cta").remove();
+                </script>
                 break;
             default:
                 <style>
@@ -156,6 +194,8 @@ else
     </style>
     <script>
         button.innerHTML = "Enroll";
+        document.querySelector(".hero-cta").remove();
+        document.querySelector(".btn-action").setAttribute('href', '/HOME/LOGIN')
     </script>
 }
 <!-- Link scrl reveal js-->

@@ -3,6 +3,7 @@ using EduAx.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +20,8 @@ namespace EduAx.Controllers
                                            select c);
             return View(cOURSES);
         }
-        // GET: Student
+
+        //GET: Student-Course-Teacher        
         public ActionResult Dash(int id_course)
         {
             var oUser = (EduAx.Models.PERSON)Session["user"];
@@ -40,10 +42,11 @@ namespace EduAx.Controllers
                                                         where gc.ID_COURSE == id_course
                                                         select gc).Count(),
                                     }).ToList();
-            for (int i = 1; i < oCourse.Count; i++)
+            var count = oCourse.Count();
+            for (int i = 1; i < count; i++)
             {
-                oCourse.ElementAt(0).places_groupcourse += oCourse.ElementAt(i).places_groupcourse;
-                //oCourse.RemoveAt(i);
+                oCourse.ElementAt(0).places_groupcourse += oCourse.ElementAt(1).places_groupcourse;
+                oCourse.RemoveAt(1);
             }
             if (oUser != null)
             {
@@ -64,11 +67,10 @@ namespace EduAx.Controllers
                                                  }).ToList();
                         if (oStudent.Count() > 0)
                         {
-                            if (oStudent.ElementAt(0).state_student.ToLower() != "flunked" &&
-                                oStudent.ElementAt(0).state_student.ToLower() != "cancelled" &&
-                                oStudent.ElementAt(0).state_student.ToLower() != "done")
+                            var oId_group = (decimal)oStudent.ElementAt(0).id_group;
+                            if (oStudent.ElementAt(0).state_student.ToLower() == "doing" ||
+                                oStudent.ElementAt(0).state_student.ToLower() == "to do")
                             {
-                                var oId_group = (decimal)oStudent.ElementAt(0).id_group;
                                 List<Global> oTeacher = (from p in db.PERSON
                                                          join t in db.TEACHER on p.ID_PERSON equals t.ID_TEACHER
                                                          where oId_group == t.ID_GROUP
@@ -92,6 +94,21 @@ namespace EduAx.Controllers
                             oCourse.ElementAt(0).course_count = 0;
                             oCourse.ElementAt(0).state_student = "TO DO";
                         }
+                        List<Global> oGroup = (from p in db.PERSON
+                                               join t in db.TEACHER on p.ID_PERSON equals t.ID_TEACHER
+                                               join gc in db.GROUP_COURSE on t.ID_GROUP equals gc.ID_GROUP
+                                               where id_course == gc.ID_COURSE
+                                               select new Global
+                                               {
+                                                   id_group = (int)t.ID_GROUP,
+                                                   name_person = p.NAME_PERSON,
+                                                   email = p.EMAIL_PERSON,
+                                                   places_groupcourse = (int)gc.PLACES_GROUPCOURSE
+                                               }).ToList();
+                        for (int i = 0; i < oGroup.Count; i++)
+                        {
+                            oCourse.Add(oGroup.ElementAt(i));
+                        }
                         break;
                     case "teacher":
 
@@ -103,6 +120,38 @@ namespace EduAx.Controllers
             }
 
             return View(oCourse);
+        }
+
+        //GET: Enrolling course as student                
+        public ActionResult Enroll(int id_course, int id_group)
+        {
+            var oUser = (EduAx.Models.PERSON)Session["user"];
+            var oStudent = (from sc in db.STUDENT_COURSE
+                            where oUser.ID_PERSON == sc.ID_STUDENT && sc.ID_COURSE == id_course
+                            select sc).ToList();
+            if(oStudent.Count > 0)
+            {
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).ID_GROUP = id_group;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STGRADE_STUDENTCOURSE = 0;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).NDGRADE_STUDENTCOURSE = 0;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).RDGRADE_STUDENTCOURSE = 0;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).THGRADE_STUDENTCOURSE = 0;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).TIMES_STUDENTCOURSE =
+                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).TIMES_STUDENTCOURSE - 1;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STATE_STUDENTCOURSE = "DOING";
+                db.SaveChanges();
+            } else
+            {
+                STUDENT_COURSE newStudent = new STUDENT_COURSE();
+                newStudent.ID_STUDENT = oUser.ID_PERSON;
+                newStudent.ID_COURSE = id_course;
+                newStudent.ID_GROUP = id_group;
+                newStudent.TIMES_STUDENTCOURSE = 1;
+                newStudent.STATE_STUDENTCOURSE = "DOING";
+                db.STUDENT_COURSE.Add(newStudent);
+                db.SaveChanges();
+            }            
+            return RedirectToAction("Dash", new { id_course = id_course });
         }
     }
 }

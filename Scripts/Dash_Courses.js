@@ -28,17 +28,38 @@ ScrollReveal().reveal('.dash-top .btn-action', { delay: 1100, origin: 'bottom' }
 //ScrollReveal().reveal('.grade4', { delay: 1100, origin: 'bottom', reset: true });
 //ScrollReveal().reveal('.modal-close', { delay: 1500, origin: 'left', reset: true });
 
-//OPEN-MODAL
-const openModal = document.querySelector('.hero-cta');
-const modal = document.querySelector('.modal-grades');
-const closeModal = document.querySelector('.modal-grades-close');
+//OPEN-MODAL-GRADES
+var openModalGrades = document.querySelector('.hero-cta');
+var modalGrades = document.querySelector('.modal-grades');
+var closeModalGrades = document.querySelector('.modal-grades-close');
 
-openModal.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.classList.add('modal-show');
-});
+if (openModalGrades != null && modalGrades != null && closeModalGrades != null) {
+    openModalGrades.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalGrades.classList.add('modal-show');
+    });
 
-closeModal.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.classList.remove('modal-show');
-});
+    closeModalGrades.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalGrades.classList.remove('modal-show');
+    });
+}
+
+//OPEN-MODAL-ENROLL
+var openModalEnroll = document.querySelector('.btn-action');
+var modalEnroll = document.querySelector('.modal-enroll');
+var closeModalEnroll = document.querySelector('.modal-enroll-close');
+
+if (openModalEnroll != null && modalEnroll != null && closeModalEnroll != null) {
+    openModalEnroll.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalEnroll.classList.add('modal-show');
+    });
+
+    closeModalEnroll.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalEnroll.classList.remove('modal-show');
+    });
+}
+
+
