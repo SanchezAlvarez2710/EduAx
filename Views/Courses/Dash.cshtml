@@ -21,7 +21,7 @@
     @if (oUser != null)
     {
         <h3 class="course-status">Current status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_student)</span></h3>
-        <h3 class="course-attempts">Attempts remaining: <span>@(2 - (int)(Model.ElementAt(0).course_count))</span></h3>
+        <h3 class="course-attempts">Attempts remaining: <span>@(2 - (int)(Model.ElementAt(0).times_studentcourse))</span></h3>
         <h3 class="teacher-status">Linked teacher: <span>@Html.DisplayFor(Model => Model.ElementAt(0).name_person)</span></h3>
         <h3 class="group-status">My group: <span>@Html.DisplayFor(Model => Model.ElementAt(0).id_group)</span></h3>
     }
@@ -63,7 +63,8 @@
 @if (oUser != null)
 {
     if (Model.ElementAt(0).state_student.ToLower().Equals("done") ||
-        Model.ElementAt(0).state_student.ToLower().Equals("doing"))
+        Model.ElementAt(0).state_student.ToLower().Equals("doing") ||
+        Model.ElementAt(0).state_student.ToLower().Equals("flunked"))
     {
         <section class="modal-grades">
             <div class="modal-grades-container">
@@ -115,7 +116,7 @@
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))
     {
         if (!Model.ElementAt(0).state_student.ToLower().Equals("doing") &&
-            Model.ElementAt(0).course_count == 2 ||
+            Model.ElementAt(0).times_studentcourse == 2 ||
             Model.ElementAt(0).state_student.ToLower().Equals("done"))
         {
             <script>

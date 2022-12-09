@@ -62,7 +62,7 @@ namespace EduAx.Controllers
                                                      ndgrade = (float)sc.NDGRADE_STUDENTCOURSE,
                                                      rdgrade = (float)sc.RDGRADE_STUDENTCOURSE,
                                                      thgrade = (float)sc.THGRADE_STUDENTCOURSE,
-                                                     course_count = (int)sc.TIMES_STUDENTCOURSE,
+                                                     times_studentcourse = (int)sc.TIMES_STUDENTCOURSE,
                                                      state_student = sc.STATE_STUDENTCOURSE
                                                  }).ToList();
                         if (oStudent.Count() > 0)
@@ -85,13 +85,13 @@ namespace EduAx.Controllers
                             oCourse.ElementAt(0).ndgrade = oStudent.ElementAt(0).ndgrade;
                             oCourse.ElementAt(0).rdgrade = oStudent.ElementAt(0).rdgrade;
                             oCourse.ElementAt(0).thgrade = oStudent.ElementAt(0).thgrade;
-                            oCourse.ElementAt(0).course_count = (int)oStudent.ElementAt(0).course_count;
+                            oCourse.ElementAt(0).times_studentcourse = (int)oStudent.ElementAt(0).times_studentcourse;
                             oCourse.ElementAt(0).state_student = oStudent.ElementAt(0).state_student;
                         }
                         else
                         {
                             oCourse.ElementAt(0).name_person = "UNSIGNED";
-                            oCourse.ElementAt(0).course_count = 0;
+                            oCourse.ElementAt(0).times_studentcourse = 0;
                             oCourse.ElementAt(0).state_student = "TO DO";
                         }
                         List<Global> oGroup = (from p in db.PERSON

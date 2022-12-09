@@ -39,6 +39,6 @@ namespace EduAx.Models.ViewModel
         //GROUPS COUNT
         public int groups_count { get; set; }
         //FLAG COURSES VIEW CONDITION
-        public int course_count { get; set; }
+        public int times_studentcourse { get; set; }
     }
 }
