@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title</title>
     @* -->IMPORT UNICONS FROM ICONSCOUT *@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     @* <-- *@
@@ -45,6 +45,12 @@
                                     <a href="/Trayectory/Index">
                                         <i class="uil uil-signal-alt-3"></i>
                                         <span class="link-name progress">Trayectory</span>
+                                    </a>
+                                    break;
+                                case "teacher":
+                                    <a href="/Teacher/Index">
+                                        <i class="uil uil-tachometer-fast-alt"></i>
+                                        <span class="link-name progress">Dashboard</span>
                                     </a>
                                     break;
                             }
@@ -104,12 +110,12 @@
                 @{
                     if (Session["user"] == null)
                     {
-                        <span class="login-spn">You are currently a guest(@Html.ActionLink("Access", "Login", "Home"))</span> 
+                        <span class="login-spn">You are currently a guest(@Html.ActionLink("Access", "Login", "Home"))</span>
                     }
                     else
                     {
-                        <span class="login-spn">@oUser.NAME_PERSON</span> 
-                        <img src="~/Img/@oUser.AVATAR_PERSON" alt="User avatar" /> 
+                        <span class="login-spn">@oUser.NAME_PERSON</span>
+                        <img src="~/Img/@oUser.AVATAR_PERSON" alt="User avatar" />
                     }
                 }
             </div>

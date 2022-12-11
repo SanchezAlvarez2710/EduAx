@@ -1,0 +1,30 @@
+﻿@using EduAx.Models.ViewModel
+@model List<EduAx.Models.ViewModel.Global>
+
+@{
+    ViewBag.Title = "Teacher dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="teacher-dash">
+    <h1>Hi! @Html.DisplayFor(Model => Model.ElementAt(0).name_person)</h1>
+    <div class="teacher-stats">
+        <div class="groups-count">
+            <h2>Groups assigned</h2>
+            <p>@Html.DisplayFor(Model => Model.ElementAt(0).groups_count)</p>
+        </div>
+        <div class="courses-count">
+            <h2>Courses assigned</h2>
+            <p>@Html.DisplayFor(Model => Model.ElementAt(0).students_count)</p>
+        </div>
+        <div class="students-count">
+            <h2>Students assigned</h2>
+            <p>@Html.DisplayFor(Model => Model.ElementAt(0).students_count)</p>
+        </div>
+    </div>
+    <hr />
+    <div class="dash-content">
+        |
+    </div>
+</div>
+

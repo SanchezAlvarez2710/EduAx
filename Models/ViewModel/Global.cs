@@ -18,6 +18,7 @@ namespace EduAx.Models.ViewModel
         public int id_group { get; set; }
         //GROUP_COURSE
         public int places_groupcourse { get; set; }
+        public string state_groupcourse { get; set; }
         //STUDENT_COURSE
         public int id_student { get; set; }     //STUDENT
         public float stgrade { get; set; }
@@ -40,5 +41,7 @@ namespace EduAx.Models.ViewModel
         public int groups_count { get; set; }
         //FLAG COURSES VIEW CONDITION
         public int times_studentcourse { get; set; }
+        //STUDENTS COUNT
+        public int students_count { get; set; }
     }
 }

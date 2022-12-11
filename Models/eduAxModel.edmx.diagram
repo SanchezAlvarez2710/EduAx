@@ -4,27 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eca2fad2bb454e5a9fffed653edc981d" Name="Diagram1">
-        <EntityTypeShape EntityType="eduAxDatabaseModel.ADMIN" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.COURSE" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.GROUP" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.GROUP_COURSE" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.PERSON" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.STUDENT" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.STUDENT_COURSE" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.STUDENT_GROUP" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="eduAxDatabaseModel.TEACHER" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+      <Diagram DiagramId="81b4c4a0b4f74874a6a3105519bd3b21" Name="Diagram1">
+        <EntityTypeShape EntityType="eduAxDatabaseModel.ADMIN" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.COURSE" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.GROUP" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.GROUP_COURSE" Width="1.5" PointX="8" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.PERSON" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.STUDENT" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.STUDENT_COURSE" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="eduAxDatabaseModel.TEACHER" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="eduAxDatabaseModel.FKADMIN_PERSON" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKGROUPCOURSE_COURSE" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENTCOURSE_COURSE" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKGROUPCOURSE_GROUP" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENTCOURSE_GROUP" ManuallyRouted="false" />
-        <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENTGROUP_GROUP" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKTEACHER_GROUP" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENT_PERSON" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKTEACHER_PERSON" ManuallyRouted="false" />
         <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENTCOURSE_STUDENT" ManuallyRouted="false" />
-        <AssociationConnector Association="eduAxDatabaseModel.FKSTUDENTGROUP_STUDENT" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

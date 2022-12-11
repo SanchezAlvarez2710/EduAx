@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TrayectoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -168,9 +169,6 @@
     <Compile Include="Models\STUDENT_COURSE.cs">
       <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\STUDENT_GROUP.cs">
-      <DependentUpon>eduAxModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TEACHER.cs">
       <DependentUpon>eduAxModel.tt</DependentUpon>
     </Compile>
@@ -187,6 +185,7 @@
     <Content Include="Content\Index.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\swiper-bundle.min.css" />
+    <Content Include="Content\Teacher.css" />
     <Content Include="Content\Trayectory.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -194,15 +193,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="Img\clcr.png" />
     <Content Include="Img\faid.png" />
+    <Content Include="Img\grades%281%29.png" />
     <Content Include="Img\grades.png" />
     <Content Include="Img\master.png" />
+    <Content Include="Img\no_paso.gif" />
+    <Content Include="Img\paso.gif" />
+    <Content Include="Img\prm.png" />
+    <Content Include="Img\rcpt.gif" />
+    <Content Include="Img\trayectory.png" />
     <EntityDeploy Include="Models\eduAxModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>eduAxModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Img\prm.png" />
-    <Content Include="Img\rcpt.gif" />
-    <Content Include="Img\trayectory.png" />
     <Content Include="Models\eduAxModel.edmx.diagram">
       <DependentUpon>eduAxModel.edmx</DependentUpon>
     </Content>
@@ -266,6 +268,7 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Courses\Dash.cshtml" />
     <Content Include="Views\Trayectory\Index.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Default\" />

@@ -32,23 +32,22 @@ namespace EduAx.Controllers
             List<PERSON> access = (from P in db.PERSON
                                          //join ADM in db.ADMIN on P.ID_PERSON equals ADM.ID_ADMIN
                                          where P.EMAIL_PERSON == oUser.EMAIL_PERSON && P.PASS_PERSON == oUser.PASS_PERSON
-                                         select new
-                                         {
-                                            ID_PERSON = (int)P.ID_PERSON,
-                                            NAME_PERSON = P.NAME_PERSON,
-                                            EMAIL_PERSON = P.EMAIL_PERSON,
-                                            PASS_PERSON = P.PASS_PERSON,
-                                            ROLE_PERSON = P.ROLE_PERSON,
-                                            AVATAR_PERSON = P.AVATAR_PERSON
-                                         }).AsEnumerable().Select(x => new PERSON
-                                         {
-                                             ID_PERSON = (int)x.ID_PERSON,
-                                             NAME_PERSON = x.NAME_PERSON,
-                                             EMAIL_PERSON = x.EMAIL_PERSON,
-                                             PASS_PERSON = x.PASS_PERSON,
-                                             ROLE_PERSON = x.ROLE_PERSON,
-                                             AVATAR_PERSON = x.AVATAR_PERSON
-                                         }).ToList();
+                                         select P).ToList();
+                                         //{
+                                         //   ID_PERSON = (int)P.ID_PERSON,
+                                         //   NAME_PERSON = P.NAME_PERSON,
+                                         //   EMAIL_PERSON = P.EMAIL_PERSON,
+                                         //   PASS_PERSON = P.PASS_PERSON,
+                                         //   ROLE_PERSON = P.ROLE_PERSON,
+                                         //   AVATAR_PERSON = P.AVATAR_PERSON
+                                         //}).AsEnumerable().Select(x => new PERSON
+                                         //{
+                                         //    ID_PERSON = (int)x.ID_PERSON,
+                                         //    NAME_PERSON = x.NAME_PERSON,
+                                         //    EMAIL_PERSON = x.EMAIL_PERSON,
+                                         //    PASS_PERSON = x.PASS_PERSON,
+                                         //    ROLE_PERSON = x.ROLE_PERSON,
+                                         //    AVATAR_PERSON = x.AVATAR_PERSON
             if (access.Any())
             {                
                 Session["user"] = access.ElementAt(0);

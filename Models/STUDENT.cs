@@ -18,7 +18,6 @@ namespace EduAx.Models
         public STUDENT()
         {
             this.STUDENT_COURSE = new HashSet<STUDENT_COURSE>();
-            this.STUDENT_GROUP = new HashSet<STUDENT_GROUP>();
         }
     
         public decimal ID_STUDENT { get; set; }
@@ -26,7 +25,5 @@ namespace EduAx.Models
         public virtual PERSON PERSON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDENT_COURSE> STUDENT_COURSE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STUDENT_GROUP> STUDENT_GROUP { get; set; }
     }
 }

@@ -38,6 +38,7 @@ namespace EduAx.Controllers
                                         icon_course = c.ICON_COURSE,
                                         image_course = c.IMAGE_COURSE,
                                         places_groupcourse = (int)gc.PLACES_GROUPCOURSE,
+                                        state_groupcourse = gc.STATE_GROUPCOURSE,
                                         groups_count = (from gc in db.GROUP_COURSE
                                                         where gc.ID_COURSE == id_course
                                                         select gc).Count(),
@@ -65,21 +66,25 @@ namespace EduAx.Controllers
                                                      times_studentcourse = (int)sc.TIMES_STUDENTCOURSE,
                                                      state_student = sc.STATE_STUDENTCOURSE
                                                  }).ToList();
-                        if (oStudent.Count() > 0)
+
+                        if (oStudent.Count() > 0)                        
                         {
                             var oId_group = (decimal)oStudent.ElementAt(0).id_group;
-                            if (oStudent.ElementAt(0).state_student.ToLower() == "doing" ||
-                                oStudent.ElementAt(0).state_student.ToLower() == "to do")
-                            {
+                            //if (oStudent.ElementAt(0).state_student.ToLower() != "to do")
+                            //{
                                 List<Global> oTeacher = (from p in db.PERSON
                                                          join t in db.TEACHER on p.ID_PERSON equals t.ID_TEACHER
+                                                         join gc in db.GROUP_COURSE on t.ID_GROUP equals gc.ID_GROUP
                                                          where oId_group == t.ID_GROUP
                                                          select new Global
                                                          {
-                                                             name_person = p.NAME_PERSON
+                                                             name_person = p.NAME_PERSON,
+                                                             state_groupcourse = gc.STATE_GROUPCOURSE
+                                                             
                                                          }).ToList();
+                                oCourse.ElementAt(0).state_groupcourse = oTeacher.ElementAt(0).state_groupcourse;
                                 oCourse.ElementAt(0).name_person = oTeacher.ElementAt(0).name_person;
-                            }
+                            //}
                             oCourse.ElementAt(0).id_group = oStudent.ElementAt(0).id_group;
                             oCourse.ElementAt(0).stgrade = oStudent.ElementAt(0).stgrade;
                             oCourse.ElementAt(0).ndgrade = oStudent.ElementAt(0).ndgrade;
@@ -126,20 +131,21 @@ namespace EduAx.Controllers
         public ActionResult Enroll(int id_course, int id_group)
         {
             var oUser = (EduAx.Models.PERSON)Session["user"];
-            var oStudent = (from sc in db.STUDENT_COURSE
+            var oStudent = (from sc in db.STUDENT_COURSE                            
                             where oUser.ID_PERSON == sc.ID_STUDENT && sc.ID_COURSE == id_course
                             select sc).ToList();
-            if(oStudent.Count > 0)
-            {
+            var oGroup = (from c in db.GROUP_COURSE
+                          where c.ID_GROUP == id_group
+                          select c).ToList();
+            if (oStudent.Count > 0)
+            {                
                 db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).ID_GROUP = id_group;
                 db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STGRADE_STUDENTCOURSE = 0;
                 db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).NDGRADE_STUDENTCOURSE = 0;
                 db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).RDGRADE_STUDENTCOURSE = 0;
                 db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).THGRADE_STUDENTCOURSE = 0;
-                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).TIMES_STUDENTCOURSE =
-                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).TIMES_STUDENTCOURSE - 1;
-                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STATE_STUDENTCOURSE = "DOING";
-                db.SaveChanges();
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).TIMES_STUDENTCOURSE += 1;
+                db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STATE_STUDENTCOURSE = "DOING";                
             } else
             {
                 STUDENT_COURSE newStudent = new STUDENT_COURSE();
@@ -148,9 +154,26 @@ namespace EduAx.Controllers
                 newStudent.ID_GROUP = id_group;
                 newStudent.TIMES_STUDENTCOURSE = 1;
                 newStudent.STATE_STUDENTCOURSE = "DOING";
-                db.STUDENT_COURSE.Add(newStudent);
-                db.SaveChanges();
-            }            
+                db.STUDENT_COURSE.Add(newStudent);                
+            }                     
+            db.GROUP_COURSE.Find(oGroup.ElementAt(0).ID_GROUPCOURSE).PLACES_GROUPCOURSE -= 1;
+            db.SaveChanges();
+            return RedirectToAction("Dash", new { id_course = id_course });
+        }
+
+        //CANCEL COURSE
+        public ActionResult Cancel(int id_course, int id_group)
+        {
+            var oUser = (EduAx.Models.PERSON)Session["user"];
+            var oCourse = (from sc in db.STUDENT_COURSE
+                           where sc.ID_COURSE == id_course && oUser.ID_PERSON == sc.ID_STUDENT
+                           select sc).ToList();
+            var oGroup = (from gc in db.GROUP_COURSE
+                          where gc.ID_GROUP == id_group
+                          select gc).ToList();
+            db.STUDENT_COURSE.Find(oCourse.ElementAt(0).ID_STUDENTCOURSE).STATE_STUDENTCOURSE = "CANCELLED";
+            db.GROUP_COURSE.Find(oGroup.ElementAt(0).ID_GROUPCOURSE).PLACES_GROUPCOURSE += 1;
+            db.SaveChanges();
             return RedirectToAction("Dash", new { id_course = id_course });
         }
     }

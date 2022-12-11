@@ -10,6 +10,7 @@
     grid-column-gap: 15rem;
     align-items: center;
     width: 100%;
+    padding: 0 0 2rem 0;
 }
 
 .course-status, .course-attempts, .group-status, .teacher-status {
@@ -182,6 +183,7 @@
     grid-row-gap: 2rem;
     transform: var(--transform);
     transition: var(--transition);
+    align-items: center;
 }
 
 .modal-grades-title, .modal-enroll-title {
@@ -201,13 +203,14 @@
 
 .modal-grades-img {
     grid-column: 1;
+    width: 100%;
 }
 
-.modal-grades-close, .modal-enroll-close {
+.modal-grades-close, .modal-enroll-close, .modal-enroll-accept {
     font-size: 1.5rem;
     background-color: #6a88fd;
     padding: 1rem 0;
-    text-align: right;
+    /*text-align: right;*/
     text-decoration: none;
     color: #FFF;
     border: .1rem #6a88fd solid;
@@ -225,6 +228,16 @@
         background: #FFF;
     }
 
+.modal-enroll-accept {
+    border: .1rem var(--primary-color) solid;
+    background: var(--primary-color);
+}
+
+    .modal-enroll-accept:hover {
+        color: var(--primary-color);
+        background: #FFF
+    }
+
 /* ------- MODAL-ENROLL ------- */
 .container-enroll {
     grid-column: 1 / span 2;
@@ -232,8 +245,8 @@
     flex-direction: column;
     width: 100%;
     gap: 2rem;
-    overflow-y: auto;    
-    padding: 7rem 0 0 0;
+    overflow-y: auto;
+    justify-items: center;
 }
 
 .enroll-title {
@@ -265,6 +278,12 @@
     .container-enroll a:hover {
         background: #DDD;
     }
+
+.container-enroll h2 {
+    font-size: 3rem;
+    text-align: center;
+    opacity: .5;
+}
 
 .uil.icon:hover .tooltip-box {
     display: flex;

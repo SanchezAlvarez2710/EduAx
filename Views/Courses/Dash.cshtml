@@ -20,6 +20,15 @@
     </div>
     @if (oUser != null)
     {
+        if (Model.ElementAt(0).state_student.ToLower() == "cancelled")
+        {
+            <style>
+                .btn-action{
+                    pointer-events: none;
+                    opacity: .5;
+                }
+            </style>
+        }
         <h3 class="course-status">Current status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_student)</span></h3>
         <h3 class="course-attempts">Attempts remaining: <span>@(2 - (int)(Model.ElementAt(0).times_studentcourse))</span></h3>
         <h3 class="teacher-status">Linked teacher: <span>@Html.DisplayFor(Model => Model.ElementAt(0).name_person)</span></h3>
@@ -51,6 +60,7 @@
         </div>
     </div>
     <a href="#" class="btn-action"><span>Enroll</span></a>
+
 </div>
 <script>
         //guide and constants
@@ -62,57 +72,126 @@
 @* CHANGE BUTTON PROPERTIES REGARDING ROLE AND STUDENT IN COURSE STATUS *@
 @if (oUser != null)
 {
-    if (Model.ElementAt(0).state_student.ToLower().Equals("done") ||
-        Model.ElementAt(0).state_student.ToLower().Equals("doing") ||
-        Model.ElementAt(0).state_student.ToLower().Equals("flunked"))
-    {
-        <section class="modal-grades">
-            <div class="modal-grades-container">
-                <h2 class="modal-grades-title">My grades</h2>
-                <hr />
-                <img src="~/Img/grades.png" alt="Thumb Grades Image" class="modal-grades-img" />
-                <div class="grades">
-                    <h2 class="average-grade">Final grade: <span>@((float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4))</span></h2>
-                    <p class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)<span>25%</span></p>
-                    <p class="grade2">@Html.DisplayFor(Model => Model.ElementAt(0).ndgrade)<span>25%</span></p>
-                    <p class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)<span>25%</span></p>
-                    <p class="grade4">@Html.DisplayFor(Model => Model.ElementAt(0).thgrade)<span>25%</span></p>
-                </div>
-                <a href="" class="modal-grades-close">Close</a>
+
+    var promedio = (float)((Model.ElementAt(0).stgrade + Model.ElementAt(0).ndgrade + Model.ElementAt(0).rdgrade + Model.ElementAt(0).thgrade) / 4);
+
+    <section class="modal-grades">
+        <div class="modal-grades-container">
+            <h2 class="modal-grades-title">My grades</h2>
+            <hr />
+            @if (Model.ElementAt(0).state_groupcourse.ToLower() == "finished")
+            {
+                if (promedio < 3.0)
+                {
+                    <img src="~/Img/no_paso.gif" alt="Thumb Grades Image" class="modal-grades-img" />
+                }
+                else
+                {
+                    <img src="~/Img/paso.gif" alt="Thumb Grades Image" class="modal-grades-img" />
+                }
+            }
+            else
+            {
+                <img src="~/Img/grades(1).png" alt="Grades image" class="modal-grades-img" />
+            }
+            <div class="grades">
+                <h2 class="average-grade">Final grade: <span>@promedio</span></h2>
+                <p class="grade1">@Html.DisplayFor(Model => Model.ElementAt(0).stgrade)<span>25%</span></p>
+                <p class="grade2">@Html.DisplayFor(Model => Model.ElementAt(0).ndgrade)<span>25%</span></p>
+                <p class="grade3">@Html.DisplayFor(Model => Model.ElementAt(0).rdgrade)<span>25%</span></p>
+                <p class="grade4">@Html.DisplayFor(Model => Model.ElementAt(0).thgrade)<span>25%</span></p>
             </div>
-        </section>
-    }
-    else
-    {
-        <section class="modal-enroll">
-            <div class="modal-enroll-container">
+            <a href="" class="modal-grades-close">Close</a>
+        </div>
+    </section>
+    <section class="modal-enroll">
+        <div class="modal-enroll-container">
+            @if (Model.ElementAt(0).state_student.ToLower() != "doing")
+            {
                 <h2 class="modal-enroll-title">Enrolling</h2>
                 <hr />
                 <h2 class="enroll-title">Please select your group</h2>
                 <div class="container-enroll">
-                    @for (int i = 1; i < Model.Count(); i++)
+                    @if (Model.Count() > 1)
                     {
-                        <a href="/Courses/Enroll?id_course=@Html.DisplayFor(Model => Model.ElementAt(0).id_course)&id_group=@Html.DisplayFor(Model => Model.ElementAt(i).id_group)">
-                            Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)
-                            <i class="uil uil-info-circle icon">
-                                <span class="tooltip-box">
-                                    <span><b>Linked teacher: </b>@Html.DisplayFor(Model => Model.ElementAt(i).name_person)</span>
-                                    <span><b>Teacher email: </b> @Html.DisplayFor(Model => Model.ElementAt(i).email)</span>
-                                    <span><b>Places course: </b> @Html.DisplayFor(Model => Model.ElementAt(i).places_groupcourse)</span>
-                                </span>
-                            </i>                           
-                        </a>                        
-                        if (i + 1 < Model.Count())
+                        <style>
+                            .container-enroll {
+                                padding: 7rem 0 0 0;
+                            }
+                        </style>
+                        for (int i = 1; i < Model.Count(); i++)
                         {
-                            <hr />
+                            <a href="/Courses/Enroll?id_course=@Model.ElementAt(0).id_course&id_group=@Model.ElementAt(i).id_group" class="group@(i)">
+                                Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)
+                                <i class="uil uil-info-circle icon">
+                                    <span class="tooltip-box">
+                                        <span><b>Linked teacher: </b>@Html.DisplayFor(Model => Model.ElementAt(i).name_person)</span>
+                                        <span><b>Teacher email: </b> @Html.DisplayFor(Model => Model.ElementAt(i).email)</span>
+                                        <span><b>Places course: </b> @Html.DisplayFor(Model => Model.ElementAt(i).places_groupcourse)</span>
+                                    </span>
+                                </i>
+                            </a>
+                            if (Model.ElementAt(i).places_groupcourse == 0)
+                            {
+                                <style>
+                                    .group@(i){
+                                        opacity: .5;
+                                        pointer-events: none;
+                                    }
+
+                                    .group@(i) i{
+                                        pointer-events: all;
+                                    }
+                                        .container-enroll .group@(i):hover {
+                                            opacity: .5;
+                                            background: #F8F8F8;
+                                        }
+                                </style>
+                                <script>
+                                    var grupo = document.querySelector(".group@(i)");
+                                    grupo.href = "#";
+                                    grupo.addEventListener('click', (e) => {
+                                        e.preventDefault();
+                                    });
+                                </script>
+                            }
+                            if (i + 1 < Model.Count())
+                            {
+                                <hr />
+                            }
                         }
+                    }
+                    else
+                    {
+                        <style>
+                            .container-enroll {
+                                padding: 0;
+                            }
+                        </style>
+                        <h2>NO GROUPS ASSOCIATE YET</h2>
                     }
                 </div>
                 <a href="#" class="modal-enroll-close">Close</a>
-            </div>
-        </section>
-    }
-
+            }
+            else
+            {
+                <h2 class="modal-enroll-title">Course canceling</h2>
+                <hr />
+                <h2 class="enroll-title">Are you sure to cancel @Html.DisplayFor(Model => Model.ElementAt(0).name_course)?</h2>
+                <div class="container-cancel">
+                    <a href="#" class="modal-enroll-close">Cancel</a>
+                    <a href="/Courses/Cancel?id_course=@Model.ElementAt(0).id_course&id_group=@Model.ElementAt(0).id_group" class="modal-enroll-accept">Accept</a>
+                </div>
+                <style>
+                    .modal-enroll-container .container-cancel {
+                        display: flex;
+                        grid-column: 1 / span 2;
+                        margin: 0 29%;
+                    }
+                </style>
+            }
+        </div>
+    </section>
     if (oUser.ROLE_PERSON.ToLower().Equals("student"))
     {
         if (!Model.ElementAt(0).state_student.ToLower().Equals("doing") &&
@@ -169,9 +248,6 @@
                         background-color: red;
                     }
                 </style>
-                <script>
-                    document.querySelector(".hero-cta").remove();
-                </script>
                 break;
             default:
                 <style>

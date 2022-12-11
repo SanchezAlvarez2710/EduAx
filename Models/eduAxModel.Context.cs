@@ -32,7 +32,6 @@ namespace EduAx.Models
         public virtual DbSet<PERSON> PERSON { get; set; }
         public virtual DbSet<STUDENT> STUDENT { get; set; }
         public virtual DbSet<STUDENT_COURSE> STUDENT_COURSE { get; set; }
-        public virtual DbSet<STUDENT_GROUP> STUDENT_GROUP { get; set; }
         public virtual DbSet<TEACHER> TEACHER { get; set; }
     }
 }
