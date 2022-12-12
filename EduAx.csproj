@@ -240,6 +240,8 @@
       <LastGenOutput>eduAxModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Dash_Courses.js" />
+    <Content Include="Scripts\html2canvas.min.js" />
+    <Content Include="Scripts\html2pdf.min.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
@@ -249,6 +251,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jspdf.debug.js" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\swiper-bundle.min.js" />

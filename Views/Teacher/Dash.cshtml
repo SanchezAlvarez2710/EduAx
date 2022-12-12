@@ -5,10 +5,278 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Students list group @Html.DisplayFor(Model => Model.ElementAt(0).id_group)</h1>
-<h2 class="state-group">Current group status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_groupcourse)</span></h2>
+<link href="~/Content/Dash_Teacher.css" rel="stylesheet" />
 
-<div class="students-list">
-
+<a href="/Teacher/Index" class="back"><i class="uil uil-angle-left"></i>Back</a>
+<div class="students-title">
+    <h1>Students list group @Html.DisplayFor(Model => Model.ElementAt(0).id_group)</h1>
+    <h2 class="state-group">Current group status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_groupcourse)</span></h2>
 </div>
+<hr />
+@if (Model.ElementAt(0).id_student != 0)
+{
+    <div class="pdf-download">
+        <a href="javascript:void(0)" class="pdf-btn">Download PDF</a>
+    </div>
+    <div class="students-list" id="target-pdf">
+        <div>
+            <h2>Course: @Model.ElementAt(0).name_course</h2>
+            <h2>Group: @Model.ElementAt(0).id_group</h2>
+        </div>
+        @*COLUMNS*@
+        <h2>Id student</h2>
+        <h2>Name student</h2>
+        <h2>1st grade</h2>
+        <h2>2nd grade</h2>
+        <h2>3rd grade</h2>
+        <h2>4th grade</h2>
+        <h2>Times</h2>
+        <h2>State</h2>
+        @*//ROWS*@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <div class="h@(i)">
+                @Html.DisplayFor(Model => Model.ElementAt(i).id_student)
+            </div>
+            <div class="h@(i)">
+                @Html.DisplayFor(Model => Model.ElementAt(i).name_person)
+            </div>
+            <div class="h@(i)g1 grade">
+                @Html.DisplayFor(Model => Model.ElementAt(i).stgrade)
+            </div>
+            <div class="h@(i)g2 grade">
+                @Html.DisplayFor(Model => Model.ElementAt(i).ndgrade)
+            </div>
+            <div class="h@(i)g3 grade">
+                @Html.DisplayFor(Model => Model.ElementAt(i).rdgrade)
+            </div>
+            <div class="h@(i)g4 grade">
+                @Html.DisplayFor(Model => Model.ElementAt(i).thgrade)
+            </div>
+            <div class="h@(i)">
+                @Html.DisplayFor(Model => Model.ElementAt(i).times_studentcourse)
+            </div>
+            <div class="h@(i)">
+                @Html.DisplayFor(Model => Model.ElementAt(i).state_student)
+            </div>
+        }
 
+    </div>
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        //FIRST GRADE
+        <section class="modal-grades mg@(i)g1">
+            <div class="modal-grades-container">
+                <div class="modal-grades-title">
+                    <div class="icon">
+                        <i class="uil uil-star"></i>
+                    </div>
+                    <h2 class="text-title">Edit first grade student</h2>
+                </div>
+                <hr />
+                <h2>Modify 1st grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <div class="btns">
+                    <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>
+                    <a href="#" class="modal-grades-accept mga@(i)g1">Accept</a>
+                </div>
+            </div>
+        </section>
+        <script>
+            //OPEN-MODAL-GRADES
+            var openModalGrades1_@(i) = document.querySelector('.h@(i)g1');
+            var modalGrades1_@(i) = document.querySelector('.mg@(i)g1');
+            var closeModalGrades1_@(i) = document.querySelector('.mgc@(i)g1');
+
+            if (openModalGrades1_@(i) != null && modalGrades1_@(i) != null && closeModalGrades1_@(i) != null) {
+                openModalGrades1_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades1_@(i).classList.add('modal-show');
+                });
+
+                closeModalGrades1_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades1_@(i).classList.remove('modal-show');
+                });
+            }
+        </script>
+        //SECOND GRADE
+        <section class="modal-grades mg@(i)g2">
+            <div class="modal-grades-container">
+                <div class="modal-grades-title">
+                    <div class="icon">
+                        <i class="uil uil-star"></i>
+                    </div>
+                    <h2 class="text-title">Edit second grade student</h2>
+                </div>
+                <hr />
+                <h2>Modify 2nd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <div class="btns">
+                    <a href="#" class="modal-grades-close mgc@(i)g2">Close</a>
+                    <a href="#" class="modal-grades-accept mga@(i)g2">Accept</a>
+                </div>
+            </div>
+        </section>
+        <script>
+            //OPEN-MODAL-GRADES
+            var openModalGrades2_@(i) = document.querySelector('.h@(i)g2');
+            var modalGrades2_@(i) = document.querySelector('.mg@(i)g2');
+            var closeModalGrades2_@(i) = document.querySelector('.mgc@(i)g2');
+
+            if (openModalGrades2_@(i) != null && modalGrades2_@(i) != null && closeModalGrades2_@(i) != null) {
+                openModalGrades2_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades2_@(i).classList.add('modal-show');
+                });
+
+                closeModalGrades2_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades2_@(i).classList.remove('modal-show');
+                });
+            }
+        </script>
+        //THIRD GRADE
+        <section class="modal-grades mg@(i)g3">
+            <div class="modal-grades-container">
+                <div class="modal-grades-title">
+                    <div class="icon">
+                        <i class="uil uil-star"></i>
+                    </div>
+                    <h2 class="text-title">Edit third grade student</h2>
+                </div>
+                <hr />
+                <h2>Modify 3rd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <div class="btns">
+                    <a href="#" class="modal-grades-close mgc@(i)g3">Close</a>
+                    <a href="#" class="modal-grades-accept mga@(i)g3">Accept</a>
+                </div>
+            </div>
+        </section>
+        <script>
+            //OPEN-MODAL-GRADES
+            var openModalGrades3_@(i) = document.querySelector('.h@(i)g3');
+            var modalGrades3_@(i) = document.querySelector('.mg@(i)g3');
+            var closeModalGrades3_@(i) = document.querySelector('.mgc@(i)g3');
+
+            if (openModalGrades3_@(i) != null && modalGrades3_@(i) != null && closeModalGrades3_@(i) != null) {
+                openModalGrades3_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades3_@(i).classList.add('modal-show');
+                });
+
+                closeModalGrades3_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades3_@(i).classList.remove('modal-show');
+                });
+            }
+        </script>
+        //FOURTH GRADE
+        <section class="modal-grades mg@(i)g4">
+            <div class="modal-grades-container">
+                <div class="modal-grades-title">
+                    <div class="icon">
+                        <i class="uil uil-star"></i>
+                    </div>
+                    <h2 class="text-title">Edit fourth grade student</h2>
+                </div>
+                <hr />
+                <h2>Modify 4th grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <div class="btns">
+                    <a href="#" class="modal-grades-close mgc@(i)g4">Close</a>
+                    <a href="#" class="modal-grades-accept mga@(i)g4">Accept</a>
+                </div>
+            </div>
+        </section>
+        <script>
+            //OPEN-MODAL-GRADES
+            var openModalGrades4_@(i) = document.querySelector('.h@(i)g4');
+            var modalGrades4_@(i) = document.querySelector('.mg@(i)g4');
+            var closeModalGrades4_@(i) = document.querySelector('.mgc@(i)g4');
+
+            if (openModalGrades4_@(i) != null && modalGrades4_@(i) != null && closeModalGrades4_@(i) != null) {
+                openModalGrades4_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades4_@(i).classList.add('modal-show');
+                });
+
+                closeModalGrades4_@(i).addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalGrades4_@(i).classList.remove('modal-show');
+                });
+            }
+        </script>
+
+    }
+}
+else
+{
+    <div class="students-list">
+        <h2>NO STUDENTS ARE ENROLL INTO COURSE</h2>
+        <style>
+            .students-list {
+                display: flex;
+                flex-direction: column;
+            }
+
+                .students-list h2 {
+                    font-size: 4rem;
+                    opacity: .5;
+                    background: none;
+                }
+        </style>
+    </div>
+}
+
+<script src="~/Scripts/jspdf.debug.js"></script>
+<script src="~/Scripts/html2canvas.min.js"></script>
+<script src="~/Scripts/html2pdf.min.js"></script>
+<!-- Link scrl reveal js -->
+<script src="~/Scripts/scrollreveal.js"></script>
+
+<script>
+
+    /*Script scrl animation*/
+        ScrollReveal({
+            //reset: true,
+            distance: '60px',
+            duration: 1500,
+            delay: 600
+        });
+
+ScrollReveal().reveal('.back', { delay: 400, origin: 'right' });
+ScrollReveal().reveal('.students-title', { delay: 400, origin: 'bottom' });
+ScrollReveal().reveal('hr', { delay: 500, origin: 'bottom' });
+ScrollReveal().reveal('.pdf-download', { delay: 1000, origin: 'right' });
+ScrollReveal().reveal('.students-list', { delay: 600, origin: 'bottom' });
+
+
+const guide = document.querySelector(".main-content .top-nav .left h2");
+guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Dashboard", "Index", "Teacher") > @Html.ActionLink("Group " + Model.ElementAt(0).id_group, "Dash", "Teacher", new {id_group = Model.ElementAt(0).id_group, state_group = Model.ElementAt(0).state_groupcourse} , null)';
+
+const options = {
+        margin: 0.5,
+        filename: 'STUDENTS_@(Model.ElementAt(0).name_course)_GROUP@(Model.ElementAt(0).id_group).pdf',
+        image: {
+type: 'jpeg',
+            quality: 500
+        },
+        html2canvas: {
+scale: 4
+        },
+        jsPDF: {
+unit: 'in',
+            format: 'letter',
+            orientation: 'portrait'
+        }
+    }
+
+    document.querySelector(".pdf-btn").addEventListener('click', (e) => {
+        e.preventDefault();
+        const element = document.getElementById('target-pdf');
+        html2pdf().from(element).set(options).save();        
+    });
+
+</script>

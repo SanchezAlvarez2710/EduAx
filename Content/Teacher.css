@@ -9,11 +9,16 @@
     gap: 3rem;
 }
 
-.teacher-dash img{
-    position: fixed;
-    width: 25rem;
-    right: 5%;
+.dash-header{
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 2rem;
 }
+
+    .dash-header img {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+    }
 
 .main-title {
     display: flex;
@@ -33,6 +38,7 @@
     display: flex;
     gap: 3rem;
     justify-content: flex-start;
+    grid-row: 3;
 }    
 
     .teacher-stats div:nth-child(1) {
@@ -47,8 +53,7 @@
         background: #6a88fd;
     }
 
-.content-box{
-    height: 40%;
+.content-box{   
     border-radius: 1rem;
     text-align: center;
     padding: 1rem 2rem;

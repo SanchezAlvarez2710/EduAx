@@ -1,11 +1,209 @@
-﻿h1{
+﻿.body-content{
+    gap: 3rem;
+    align-items: normal;
+}
+
+.back{
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+    text-decoration: none;        
+}
+
+    .back:hover {        
+        color: #0b866d;
+    }
+
+.back i{
+    color: #000;
     font-size: 3rem;
 }
 
-.state-group span {
+.students-title {
+    text-align: center;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+hr{
+    width: 100%;
+}
+
+.pdf-download {
+    display: flex;
+    justify-content: flex-start;
+}
+
+    .pdf-download a {
+        color: #FFF;
+        font-size: 1.5rem;
+        text-decoration: none;
+        border-radius: .5rem;
+        padding: 1rem;
+        transition: var(--trans-03);
+        cursor: pointer;
+        background: var(--primary-color);
+    }
+
+        .pdf-download a:hover {
+            background: #0b866d;
+        }
+
+.students-title h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.students-title h2 span {
     border-radius: .5rem;
     padding: 1rem;    
 }
+
+.students-list {
+    border-radius: .5rem;    
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    text-align: center;
+    grid-gap: .2rem;
+}
+
+    .students-list div:nth-child(1) {
+        display: flex;
+        justify-content: space-evenly;
+        grid-column: 1 / span 8;
+        text-align: left;
+        margin: 0 0 2rem 0;
+    }
+
+    .students-list > h2 {
+        background: #DDD;
+    }
+
+    .students-list > div:not(div:nth-child(1)) {
+        background: #eeeeee;
+        padding: 1rem 0;
+    }
+
+    .students-list > .grade:hover {
+        cursor: pointer;
+        background: var(--panel-color);
+    }        
+
+/* ------- MODALS ------ */
+.modal-grades {
+    pointer-events: none;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    z-index: 10;
+    transition: opacity .5s .7s;
+    --transform: translateY(-100vh);
+    --transition: transform .8s;
+}
+
+.modal-grades h2{
+    padding: 2rem 0;
+}
+
+.modal-show {
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+    --transform: translateY(0);
+    --transition: transform .6s .6s;
+}
+
+.modal-grades-container {
+    display: grid;
+    margin: auto;
+    width: 90%;
+    max-width: 90rem;
+    max-height: 90%;
+    border-radius: .6rem;
+    padding: 3rem 2.5rem;
+    background-color: white;
+    transform: var(--transform);
+    transition: var(--transition);
+    place-content: center;
+}
+
+.modal-grades-title {
+    font-size: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    grid-column: 1 / span 2;
+    justify-content: center;
+    align-items: center;    
+    color: #000;    
+}
+
+.modal-grades-title .icon{
+    color: #FFF;
+    display: flex;
+    background: var(--primary-color);
+    border-radius: .5rem;
+    justify-content: center;
+    align-items: center;
+    padding: .4rem 1rem;
+}
+
+.modal-grades-container hr:nth-child(2) {
+    grid-column: 1 / span 2;
+}
+
+.modal-grades-img {
+    grid-column: 1;
+}
+
+.btns{
+    padding: 2rem 0;
+    grid-row: 5;
+    display:flex;
+    gap: 3rem;
+    justify-content: center;    
+    grid-column: 1 / span 2;
+}
+
+.modal-grades-close, .modal-grades-accept {
+    font-size: 1.5rem;
+    background-color: #6a88fd;
+    padding: 1rem 0;
+    text-align: right;
+    text-decoration: none;
+    color: #FFF;
+    border: .1rem #6a88fd solid;    
+    border-radius: .5rem;
+    padding: 1rem 3rem;
+    transition: background-color .3s;    
+    font-weight: 600;
+}
+
+.modal-grades-accept {
+    background: var(--primary-color);
+    border: .1rem var(--primary-color) solid;    
+}
+
+.modal-grades-accept:hover{
+    color: var(--primary-color);
+    background: #FFF;
+}
+
+    .modal-grades-close:hover {
+        color: #6a88fd;
+        background: #FFF;
+    }
+
+    .modal-grades input[type="number"]{   
+        margin: 2rem 0;
+        border-radius: .5rem;
+    }
