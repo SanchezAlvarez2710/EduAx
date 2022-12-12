@@ -182,6 +182,7 @@
     </Content>
     <Content Include="Content\Courses.css" />
     <Content Include="Content\Dash_Courses.css" />
+    <Content Include="Content\Dash_Teacher.css" />
     <Content Include="Content\Index.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\swiper-bundle.min.css" />
@@ -200,6 +201,7 @@
     <Content Include="Img\paso.gif" />
     <Content Include="Img\prm.png" />
     <Content Include="Img\rcpt.gif" />
+    <Content Include="Img\teacher_dash.png" />
     <Content Include="Img\trayectory.png" />
     <EntityDeploy Include="Models\eduAxModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -269,6 +271,7 @@
     <Content Include="Views\Courses\Dash.cshtml" />
     <Content Include="Views\Trayectory\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Dash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Default\" />

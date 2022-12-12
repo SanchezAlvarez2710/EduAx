@@ -1,0 +1,11 @@
+﻿h1{
+    font-size: 3rem;
+}
+
+.state-group span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    padding: 1rem;    
+}

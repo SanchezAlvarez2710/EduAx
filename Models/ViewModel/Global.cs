@@ -37,11 +37,14 @@ namespace EduAx.Models.ViewModel
         public string avatar { get; set; }
         //ADMIN
         public int id_admin { get; set; }
-        //GROUPS COUNT
-        public int groups_count { get; set; }
         //FLAG COURSES VIEW CONDITION
         public int times_studentcourse { get; set; }
+        //GROUPS COUNT
+        public int groups_count { get; set; }
         //STUDENTS COUNT
         public int students_count { get; set; }
+        //COURSES COUNT
+        public int courses_count { get; set; }
+
     }
 }

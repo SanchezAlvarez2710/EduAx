@@ -1,3 +1,99 @@
-﻿.groups-count{
-
+﻿h1{
+    font-size: 4rem !important;
 }
+
+.teacher-dash{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.teacher-dash img{
+    position: fixed;
+    width: 25rem;
+    right: 5%;
+}
+
+.main-title {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 2rem;
+}
+
+    .main-title .icon {
+        padding: .2rem .8rem;
+        border-radius: .5rem;
+        background: var(--primary-color);
+        color: #FFF;
+    }
+
+.teacher-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: flex-start;
+}    
+
+    .teacher-stats div:nth-child(1) {
+        background: #89ffa8;
+    }
+
+    .teacher-stats div:nth-child(2) {
+        background: #FFE6AC;
+    }
+
+    .teacher-stats div:nth-child(3) {
+        background: #6a88fd;
+    }
+
+.content-box{
+    height: 40%;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+    .content-box i{
+        font-size: 4rem;
+    }
+
+    .content-box h2 {
+        font-size: 2.5rem;
+    }
+
+    .content-box h3{
+        font-size: 2.3rem;
+    }
+
+/* ------------ GROUPS LIST -------------- */
+.dash-content{    
+    overflow-x: hidden;
+    display: flex;
+    flex-direction:column;
+    gap: 1rem;    
+    margin: 0 0 2rem 0;
+}
+
+.dash-content a:not(.modal-close) {    
+    grid-column: 1;
+    display: flex;
+    justify-content: space-around;    
+    align-items: center;
+    gap: 1rem;
+    border-radius: .5rem;    
+    color: var(--black-light-color);
+    cursor: pointer;
+    font-size: 2rem;    
+    font-weight: 500;
+    transition: 0.3s;
+    background: #eeeeee;
+    text-decoration: none;
+    height: 7rem;
+}
+
+.dash-content a:hover:not(.modal-close) {
+    background: #DDD;
+}
+
+

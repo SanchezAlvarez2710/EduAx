@@ -1,0 +1,14 @@
+﻿@model List<EduAx.Models.ViewModel.Global>
+
+@{
+    ViewBag.Title = "Dash";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Students list group @Html.DisplayFor(Model => Model.ElementAt(0).id_group)</h1>
+<h2 class="state-group">Current group status: <span>@Html.DisplayFor(Model => Model.ElementAt(0).state_groupcourse)</span></h2>
+
+<div class="students-list">
+
+</div>
+
