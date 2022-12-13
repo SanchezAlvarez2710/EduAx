@@ -62,86 +62,98 @@
         }
 
     </div>
-    for (int i = 0; i < Model.Count(); i++)
+    if (Model.ElementAt(0).state_groupcourse.ToLower() == "doing")
     {
-        //FIRST GRADE
-        <section class="modal-grades mg@(i)g1">
-            <div class="modal-grades-container">
-                <div class="modal-grades-title">
-                    <div class="icon">
-                        <i class="uil uil-star"></i>
+        for (int i = 0; i < Model.Count(); i++)
+        {
+            //FIRST GRADE
+            <section class="modal-grades mg@(i)g1">
+                <div class="modal-grades-container">
+                    <div class="modal-grades-title">
+                        <div class="icon">
+                            <i class="uil uil-star"></i>
+                        </div>
+                        <h2 class="text-title">Edit first grade student</h2>
                     </div>
-                    <h2 class="text-title">Edit first grade student</h2>
+                    <hr />
+                    <h2>Modify 1st grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                    <input type="number" placeholder="@Model.ElementAt(i).stgrade" value="" step="0.01" min="0" max="5" autofocus=""/>
+                    <div class="btns">
+                        <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>                    
+                        <a href="#" class="modal-grades-accept mga@(i)g1">Accept</a>
+                    </div>
                 </div>
-                <hr />
-                <h2>Modify 1st grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).stgrade" value="" step="0.01" min="0" max="5" autofocus=""/>
-                <div class="btns">
-                    <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>                    
-                    <a href="#" class="modal-grades-accept mga@(i)g1">Accept</a>
-                </div>
-            </div>
-        </section>
-        <script>
+            </section>
+            <script>
 
-            document.querySelector(".mg@(i)g1 input[type='number']").addEventListener('keyup', (e) => {
-                if (e.keyCode === 13) {
+                document.querySelector(".mg@(i)g1 input[type='number']").addEventListener('keyup', (e) => {
+                    if (e.keyCode === 13) {
+                        var inputVal1_@(i) = document.querySelector(".mg@(i)g1 input[type='number']").value;
+                        if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i)) == true) {
+                            e.preventDefault();
+                            location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=1&grade=" + inputVal1_@(i);
+                        } else {
+                            alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                        }
+                    }
+                });
+                document.querySelector(".mga@(i)g1").addEventListener('click', (e) => {
                     var inputVal1_@(i) = document.querySelector(".mg@(i)g1 input[type='number']").value;
-                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i)) == true) {
+                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i) ) == true) {
                         e.preventDefault();
                         location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=1&grade=" + inputVal1_@(i);
                     } else {
                         alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
                     }
-                }
-            });
-            document.querySelector(".mga@(i)g1").addEventListener('click', (e) => {
-                var inputVal1_@(i) = document.querySelector(".mg@(i)g1 input[type='number']").value;
-                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i) ) == true) {
-                    e.preventDefault();
-                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=1&grade=" + inputVal1_@(i);
-                } else {
-                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
-                }
-            });
-            //OPEN-MODAL-GRADES
-            var openModalGrades1_@(i) = document.querySelector('.h@(i)g1');
-            var modalGrades1_@(i) = document.querySelector('.mg@(i)g1');
-            var closeModalGrades1_@(i) = document.querySelector('.mgc@(i)g1');
-
-            if (openModalGrades1_@(i) != null && modalGrades1_@(i) != null && closeModalGrades1_@(i) != null) {
-                openModalGrades1_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades1_@(i).classList.add('modal-show');
                 });
+                //OPEN-MODAL-GRADES
+                var openModalGrades1_@(i) = document.querySelector('.h@(i)g1');
+                var modalGrades1_@(i) = document.querySelector('.mg@(i)g1');
+                var closeModalGrades1_@(i) = document.querySelector('.mgc@(i)g1');
 
-                closeModalGrades1_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades1_@(i).classList.remove('modal-show');
-                });
-            }
-        </script>
-        //SECOND GRADE
-        <section class="modal-grades mg@(i)g2">
-            <div class="modal-grades-container">
-                <div class="modal-grades-title">
-                    <div class="icon">
-                        <i class="uil uil-star"></i>
+                if (openModalGrades1_@(i) != null && modalGrades1_@(i) != null && closeModalGrades1_@(i) != null) {
+                    openModalGrades1_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades1_@(i).classList.add('modal-show');
+                    });
+
+                    closeModalGrades1_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades1_@(i).classList.remove('modal-show');
+                    });
+                }
+            </script>
+            //SECOND GRADE
+            <section class="modal-grades mg@(i)g2">
+                <div class="modal-grades-container">
+                    <div class="modal-grades-title">
+                        <div class="icon">
+                            <i class="uil uil-star"></i>
+                        </div>
+                        <h2 class="text-title">Edit second grade student</h2>
                     </div>
-                    <h2 class="text-title">Edit second grade student</h2>
+                    <hr />
+                    <h2>Modify 2nd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                    <input type="number" placeholder="@Model.ElementAt(i).ndgrade" value="" step="0.01" min="0" max="5" autofocus/>
+                    <div class="btns">
+                        <a href="#" class="modal-grades-close mgc@(i)g2">Close</a>
+                        <a href="#" class="modal-grades-accept mga@(i)g2">Accept</a>
+                    </div>
                 </div>
-                <hr />
-                <h2>Modify 2nd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).ndgrade" value="" step="0.01" min="0" max="5" autofocus/>
-                <div class="btns">
-                    <a href="#" class="modal-grades-close mgc@(i)g2">Close</a>
-                    <a href="#" class="modal-grades-accept mga@(i)g2">Accept</a>
-                </div>
-            </div>
-        </section>
-        <script>
-            document.querySelector(".mg@(i)g2 input[type='number']").addEventListener('keyup', (e) => {
-                if (e.keyCode === 13) {
+            </section>
+            <script>
+                document.querySelector(".mg@(i)g2 input[type='number']").addEventListener('keyup', (e) => {
+                    if (e.keyCode === 13) {
+                        var inputVal2_@(i) = document.querySelector(".mg@(i)g2 input[type='number']").value;
+                        if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal2_@(i) ) == true) {
+                            e.preventDefault();
+                            location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=2&grade=" + inputVal2_@(i);
+                        } else {
+                            alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                        }
+                    }
+                });
+                document.querySelector(".mga@(i)g2").addEventListener('click', (e) => {
                     var inputVal2_@(i) = document.querySelector(".mg@(i)g2 input[type='number']").value;
                     if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal2_@(i) ) == true) {
                         e.preventDefault();
@@ -149,55 +161,55 @@
                     } else {
                         alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
                     }
-                }
-            });
-            document.querySelector(".mga@(i)g2").addEventListener('click', (e) => {
-                var inputVal2_@(i) = document.querySelector(".mg@(i)g2 input[type='number']").value;
-                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal2_@(i) ) == true) {
-                    e.preventDefault();
-                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=2&grade=" + inputVal2_@(i);
-                } else {
-                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
-                }
-            });
-            //OPEN-MODAL-GRADES
-            var openModalGrades2_@(i) = document.querySelector('.h@(i)g2');
-            var modalGrades2_@(i) = document.querySelector('.mg@(i)g2');
-            var closeModalGrades2_@(i) = document.querySelector('.mgc@(i)g2');
-
-            if (openModalGrades2_@(i) != null && modalGrades2_@(i) != null && closeModalGrades2_@(i) != null) {
-                openModalGrades2_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades2_@(i).classList.add('modal-show');
                 });
+                //OPEN-MODAL-GRADES
+                var openModalGrades2_@(i) = document.querySelector('.h@(i)g2');
+                var modalGrades2_@(i) = document.querySelector('.mg@(i)g2');
+                var closeModalGrades2_@(i) = document.querySelector('.mgc@(i)g2');
 
-                closeModalGrades2_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades2_@(i).classList.remove('modal-show');
-                });
-            }
-        </script>
-        //THIRD GRADE
-        <section class="modal-grades mg@(i)g3">
-            <div class="modal-grades-container">
-                <div class="modal-grades-title">
-                    <div class="icon">
-                        <i class="uil uil-star"></i>
+                if (openModalGrades2_@(i) != null && modalGrades2_@(i) != null && closeModalGrades2_@(i) != null) {
+                    openModalGrades2_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades2_@(i).classList.add('modal-show');
+                    });
+
+                    closeModalGrades2_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades2_@(i).classList.remove('modal-show');
+                    });
+                }
+            </script>
+            //THIRD GRADE
+            <section class="modal-grades mg@(i)g3">
+                <div class="modal-grades-container">
+                    <div class="modal-grades-title">
+                        <div class="icon">
+                            <i class="uil uil-star"></i>
+                        </div>
+                        <h2 class="text-title">Edit third grade student</h2>
                     </div>
-                    <h2 class="text-title">Edit third grade student</h2>
+                    <hr />
+                    <h2>Modify 3rd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                    <input type="number" placeholder="@Model.ElementAt(i).rdgrade" step="0.01" min="0" max="5" autofocus/>
+                    <div class="btns">
+                        <a href="#" class="modal-grades-close mgc@(i)g3">Close</a>
+                        <a href="#" class="modal-grades-accept mga@(i)g3">Accept</a>
+                    </div>
                 </div>
-                <hr />
-                <h2>Modify 3rd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).rdgrade" step="0.01" min="0" max="5" autofocus/>
-                <div class="btns">
-                    <a href="#" class="modal-grades-close mgc@(i)g3">Close</a>
-                    <a href="#" class="modal-grades-accept mga@(i)g3">Accept</a>
-                </div>
-            </div>
-        </section>
-        <script>
-            document.querySelector(".mg@(i)g3 input[type='number']").addEventListener('keyup', (e) => {
-                if (e.keyCode === 13) {
+            </section>
+            <script>
+                document.querySelector(".mg@(i)g3 input[type='number']").addEventListener('keyup', (e) => {
+                    if (e.keyCode === 13) {
+                        var inputVal3_@(i) = document.querySelector(".mg@(i)g3 input[type='number']").value;
+                        if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal3_@(i) ) == true) {
+                            e.preventDefault();
+                            location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=3&grade=" + inputVal3_@(i);
+                        } else {
+                            alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                        }
+                    }
+                });
+                document.querySelector(".mga@(i)g3").addEventListener('click', (e) => {
                     var inputVal3_@(i) = document.querySelector(".mg@(i)g3 input[type='number']").value;
                     if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal3_@(i) ) == true) {
                         e.preventDefault();
@@ -205,91 +217,89 @@
                     } else {
                         alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
                     }
-                }
-            });
-            document.querySelector(".mga@(i)g3").addEventListener('click', (e) => {
-                var inputVal3_@(i) = document.querySelector(".mg@(i)g3 input[type='number']").value;
-                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal3_@(i) ) == true) {
-                    e.preventDefault();
-                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=3&grade=" + inputVal3_@(i);
-                } else {
-                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
-                }
-            });
-            //OPEN-MODAL-GRADES
-            var openModalGrades3_@(i) = document.querySelector('.h@(i)g3');
-            var modalGrades3_@(i) = document.querySelector('.mg@(i)g3');
-            var closeModalGrades3_@(i) = document.querySelector('.mgc@(i)g3');
-
-            if (openModalGrades3_@(i) != null && modalGrades3_@(i) != null && closeModalGrades3_@(i) != null) {
-                openModalGrades3_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades3_@(i).classList.add('modal-show');
                 });
+                //OPEN-MODAL-GRADES
+                var openModalGrades3_@(i) = document.querySelector('.h@(i)g3');
+                var modalGrades3_@(i) = document.querySelector('.mg@(i)g3');
+                var closeModalGrades3_@(i) = document.querySelector('.mgc@(i)g3');
 
-                closeModalGrades3_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades3_@(i).classList.remove('modal-show');
-                });
-            }
-        </script>
-        //FOURTH GRADE
-        <section class="modal-grades mg@(i)g4">
-            <div class="modal-grades-container">
-                <div class="modal-grades-title">
-                    <div class="icon">
-                        <i class="uil uil-star"></i>
-                    </div>
-                    <h2 class="text-title">Edit fourth grade student</h2>
-                </div>
-                <hr />
-                <h2>Modify 4th grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).thgrade" step="0.01" min="0" max="5" autofocus/>
-                <div class="btns">
-                    <a href="#" class="modal-grades-close mgc@(i)g4">Close</a>
-                    <a href="#" class="modal-grades-accept mga@(i)g4">Accept</a>
-                </div>
-            </div>
-        </section>
-        <script>
-            document.querySelector(".mg@(i)g4 input[type='number']").addEventListener('keyup', (e) => {
-                if (e.keyCode === 13) {
-                    var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
-                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
+                if (openModalGrades3_@(i) != null && modalGrades3_@(i) != null && closeModalGrades3_@(i) != null) {
+                    openModalGrades3_@(i).addEventListener('click', (e) => {
                         e.preventDefault();
-                        location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
-                    } else {
-                        alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
-                    }
+                        modalGrades3_@(i).classList.add('modal-show');
+                    });
+
+                    closeModalGrades3_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades3_@(i).classList.remove('modal-show');
+                    });
                 }
-            });
-             document.querySelector(".mga@(i)g4").addEventListener('click', (e) => {
-                 var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
-                 if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
-                     e.preventDefault();
-                     location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
-                 } else {
-                     alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
-                 }
-            });
-            //OPEN-MODAL-GRADES
-            var openModalGrades4_@(i) = document.querySelector('.h@(i)g4');
-            var modalGrades4_@(i) = document.querySelector('.mg@(i)g4');
-            var closeModalGrades4_@(i) = document.querySelector('.mgc@(i)g4');
-
-            if (openModalGrades4_@(i) != null && modalGrades4_@(i) != null && closeModalGrades4_@(i) != null) {
-                openModalGrades4_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades4_@(i).classList.add('modal-show');
+            </script>
+            //FOURTH GRADE
+            <section class="modal-grades mg@(i)g4">
+                <div class="modal-grades-container">
+                    <div class="modal-grades-title">
+                        <div class="icon">
+                            <i class="uil uil-star"></i>
+                        </div>
+                        <h2 class="text-title">Edit fourth grade student</h2>
+                    </div>
+                    <hr />
+                    <h2>Modify 4th grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
+                    <input type="number" placeholder="@Model.ElementAt(i).thgrade" step="0.01" min="0" max="5" autofocus/>
+                    <div class="btns">
+                        <a href="#" class="modal-grades-close mgc@(i)g4">Close</a>
+                        <a href="#" class="modal-grades-accept mga@(i)g4">Accept</a>
+                    </div>
+                </div>
+            </section>
+            <script>
+                document.querySelector(".mg@(i)g4 input[type='number']").addEventListener('keyup', (e) => {
+                    if (e.keyCode === 13) {
+                        var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
+                        if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
+                            e.preventDefault();
+                            location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
+                        } else {
+                            alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                        }
+                    }
                 });
-
-                closeModalGrades4_@(i).addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modalGrades4_@(i).classList.remove('modal-show');
+                 document.querySelector(".mga@(i)g4").addEventListener('click', (e) => {
+                     var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
+                     if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
+                         e.preventDefault();
+                         location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
+                     } else {
+                         alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                     }
                 });
-            }
-        </script>
+                //OPEN-MODAL-GRADES
+                var openModalGrades4_@(i) = document.querySelector('.h@(i)g4');
+                var modalGrades4_@(i) = document.querySelector('.mg@(i)g4');
+                var closeModalGrades4_@(i) = document.querySelector('.mgc@(i)g4');
+
+                if (openModalGrades4_@(i) != null && modalGrades4_@(i) != null && closeModalGrades4_@(i) != null) {
+                    openModalGrades4_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades4_@(i).classList.add('modal-show');
+                    });
+
+                    closeModalGrades4_@(i).addEventListener('click', (e) => {
+                        e.preventDefault();
+                        modalGrades4_@(i).classList.remove('modal-show');
+                    });
+                }
+            </script>
+        }
+    } else
+    {
+<style>
+    .students-list > .grade{
+        pointer-events: none;
     }
+</style>
+                }
 }
 else
 {

@@ -19,11 +19,11 @@
         <a href="#" class="hero-cta"><i class="uil uil-info-circle"></i></a>
     </div>
     @if (oUser != null)
-    {
-        if (Model.ElementAt(0).state_student.ToLower() == "cancelled")
+    {        
+        if (Model.ElementAt(0).state_student.ToLower() == "cancelled" && Model.ElementAt(0).state_groupcourse.ToLower() == "finished" || Model.ElementAt(0).state_groupcourse.ToLower() == "doing")
         {
             <style>
-                .btn-action{
+                .btn-action {
                     pointer-events: none;
                     opacity: .5;
                 }
