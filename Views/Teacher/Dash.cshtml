@@ -75,14 +75,35 @@
                 </div>
                 <hr />
                 <h2>Modify 1st grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <input type="number" placeholder="@Model.ElementAt(i).stgrade" value="" step="0.01" min="0" max="5" autofocus=""/>
                 <div class="btns">
-                    <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>
+                    <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>                    
                     <a href="#" class="modal-grades-accept mga@(i)g1">Accept</a>
                 </div>
             </div>
         </section>
         <script>
+
+            document.querySelector(".mg@(i)g1 input[type='number']").addEventListener('keyup', (e) => {
+                if (e.keyCode === 13) {
+                    var inputVal1_@(i) = document.querySelector(".mg@(i)g1 input[type='number']").value;
+                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i)) == true) {
+                        e.preventDefault();
+                        location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=1&grade=" + inputVal1_@(i);
+                    } else {
+                        alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                    }
+                }
+            });
+            document.querySelector(".mga@(i)g1").addEventListener('click', (e) => {
+                var inputVal1_@(i) = document.querySelector(".mg@(i)g1 input[type='number']").value;
+                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal1_@(i) ) == true) {
+                    e.preventDefault();
+                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=1&grade=" + inputVal1_@(i);
+                } else {
+                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                }
+            });
             //OPEN-MODAL-GRADES
             var openModalGrades1_@(i) = document.querySelector('.h@(i)g1');
             var modalGrades1_@(i) = document.querySelector('.mg@(i)g1');
@@ -111,7 +132,7 @@
                 </div>
                 <hr />
                 <h2>Modify 2nd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <input type="number" placeholder="@Model.ElementAt(i).ndgrade" value="" step="0.01" min="0" max="5" autofocus/>
                 <div class="btns">
                     <a href="#" class="modal-grades-close mgc@(i)g2">Close</a>
                     <a href="#" class="modal-grades-accept mga@(i)g2">Accept</a>
@@ -119,6 +140,26 @@
             </div>
         </section>
         <script>
+            document.querySelector(".mg@(i)g2 input[type='number']").addEventListener('keyup', (e) => {
+                if (e.keyCode === 13) {
+                    var inputVal2_@(i) = document.querySelector(".mg@(i)g2 input[type='number']").value;
+                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal2_@(i) ) == true) {
+                        e.preventDefault();
+                        location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=2&grade=" + inputVal2_@(i);
+                    } else {
+                        alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                    }
+                }
+            });
+            document.querySelector(".mga@(i)g2").addEventListener('click', (e) => {
+                var inputVal2_@(i) = document.querySelector(".mg@(i)g2 input[type='number']").value;
+                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal2_@(i) ) == true) {
+                    e.preventDefault();
+                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=2&grade=" + inputVal2_@(i);
+                } else {
+                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                }
+            });
             //OPEN-MODAL-GRADES
             var openModalGrades2_@(i) = document.querySelector('.h@(i)g2');
             var modalGrades2_@(i) = document.querySelector('.mg@(i)g2');
@@ -147,7 +188,7 @@
                 </div>
                 <hr />
                 <h2>Modify 3rd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <input type="number" placeholder="@Model.ElementAt(i).rdgrade" step="0.01" min="0" max="5" autofocus/>
                 <div class="btns">
                     <a href="#" class="modal-grades-close mgc@(i)g3">Close</a>
                     <a href="#" class="modal-grades-accept mga@(i)g3">Accept</a>
@@ -155,6 +196,26 @@
             </div>
         </section>
         <script>
+            document.querySelector(".mg@(i)g3 input[type='number']").addEventListener('keyup', (e) => {
+                if (e.keyCode === 13) {
+                    var inputVal3_@(i) = document.querySelector(".mg@(i)g3 input[type='number']").value;
+                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal3_@(i) ) == true) {
+                        e.preventDefault();
+                        location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=3&grade=" + inputVal3_@(i);
+                    } else {
+                        alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                    }
+                }
+            });
+            document.querySelector(".mga@(i)g3").addEventListener('click', (e) => {
+                var inputVal3_@(i) = document.querySelector(".mg@(i)g3 input[type='number']").value;
+                if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal3_@(i) ) == true) {
+                    e.preventDefault();
+                    location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=3&grade=" + inputVal3_@(i);
+                } else {
+                    alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                }
+            });
             //OPEN-MODAL-GRADES
             var openModalGrades3_@(i) = document.querySelector('.h@(i)g3');
             var modalGrades3_@(i) = document.querySelector('.mg@(i)g3');
@@ -183,7 +244,7 @@
                 </div>
                 <hr />
                 <h2>Modify 4th grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                <input type="number" placeholder="@Model.ElementAt(i).thgrade" />
+                <input type="number" placeholder="@Model.ElementAt(i).thgrade" step="0.01" min="0" max="5" autofocus/>
                 <div class="btns">
                     <a href="#" class="modal-grades-close mgc@(i)g4">Close</a>
                     <a href="#" class="modal-grades-accept mga@(i)g4">Accept</a>
@@ -191,6 +252,26 @@
             </div>
         </section>
         <script>
+            document.querySelector(".mg@(i)g4 input[type='number']").addEventListener('keyup', (e) => {
+                if (e.keyCode === 13) {
+                    var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
+                    if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
+                        e.preventDefault();
+                        location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
+                    } else {
+                        alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                    }
+                }
+            });
+             document.querySelector(".mga@(i)g4").addEventListener('click', (e) => {
+                 var inputVal4_@(i) = document.querySelector(".mg@(i)g4 input[type='number']").value;
+                 if (/^(([0-5]{1})|([0-4]{1}(.|,)\d{2}){1}){1}$/.test(inputVal4_@(i) ) == true) {
+                     e.preventDefault();
+                     location.href = "/Teacher/Edit?id_group=" + @Model.ElementAt(i).id_group + "&id_student=" + @Model.ElementAt(i).id_student + "&n_grade=4&grade=" + inputVal4_@(i);
+                 } else {
+                     alert('Solo se permiten numeros del 0 al 5 con dos cifras decimales');
+                 }
+            });
             //OPEN-MODAL-GRADES
             var openModalGrades4_@(i) = document.querySelector('.h@(i)g4');
             var modalGrades4_@(i) = document.querySelector('.mg@(i)g4');
@@ -208,7 +289,6 @@
                 });
             }
         </script>
-
     }
 }
 else
@@ -276,7 +356,7 @@ unit: 'in',
     document.querySelector(".pdf-btn").addEventListener('click', (e) => {
         e.preventDefault();
         const element = document.getElementById('target-pdf');
-        html2pdf().from(element).set(options).save();        
+        html2pdf().from(element).set(options).save();
     });
 
 </script>

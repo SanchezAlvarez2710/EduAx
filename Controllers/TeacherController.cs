@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -65,11 +66,12 @@ namespace EduAx.Controllers
             }
         }
 
-        public ActionResult Dash(int id_group, string state_group)
+        public ActionResult Dash(int id_group)
         {
             if (Session["user"] != null)
             {
                 var oStudents = (from sc in db.STUDENT_COURSE
+                                 join gc in db.GROUP_COURSE on sc.ID_GROUP equals gc.ID_GROUP
                                  join p in db.PERSON on sc.ID_STUDENT equals p.ID_PERSON
                                  join c in db.COURSE on sc.ID_COURSE equals c.ID_COURSE
                                  where sc.ID_GROUP == id_group
@@ -85,7 +87,7 @@ namespace EduAx.Controllers
                                      thgrade = sc.THGRADE_STUDENTCOURSE,
                                      times_studentcourse = (int)sc.TIMES_STUDENTCOURSE,
                                      state_student = sc.STATE_STUDENTCOURSE,
-                                     state_groupcourse = state_group
+                                     state_groupcourse = gc.STATE_GROUPCOURSE
                                  }).ToList();
                 if (!(oStudents.Count > 0))
                 {
@@ -104,6 +106,29 @@ namespace EduAx.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+        }               
+        public ActionResult Edit(int id_group, int id_student, int n_grade, float grade)
+        {
+            var oStudent = (from sc in db.STUDENT_COURSE 
+                            where id_group == sc.ID_GROUP && sc.ID_STUDENT == id_student
+                            select sc).ToList();
+            switch (n_grade)
+            {
+                case 1:
+                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).STGRADE_STUDENTCOURSE = grade;
+                    break;
+                case 2:
+                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).NDGRADE_STUDENTCOURSE = grade;
+                    break;
+                case 3:
+                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).RDGRADE_STUDENTCOURSE = grade;
+                    break;
+                default:
+                    db.STUDENT_COURSE.Find(oStudent.ElementAt(0).ID_STUDENTCOURSE).THGRADE_STUDENTCOURSE = grade;
+                    break;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Dash", new {id_group = id_group});
         }
     }
 }
