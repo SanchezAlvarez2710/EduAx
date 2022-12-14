@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 @{
     ViewBag.Title = "Index";
@@ -5,4 +6,69 @@
 }
 
 <h2>Index</h2>
+=======
+﻿@using EduAx.Models.ViewModel
+@model EduAx.Models.ViewModel.Global
+
+@{
+    
+    ViewBag.Title = "Admin dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Teacher.css" rel="stylesheet" />
+
+<div class="teacher-dash">
+    <div class="dash-header">
+        <div class="main-title">
+            <div class="icon">
+                <i class="uil uil-tachometer-fast-alt"></i>
+            </div>
+            <h2 class="text">Teacher Dashboard</h2>
+        </div>
+        <img src="~/Img/teacher_dash.png" />
+        <h1>Welcome back! @Model.name_person</h1>
+        <div class="teacher-stats">
+            <div class="content-box">
+                <i class="uil uil-users-alt"></i>
+                <h2>Number of students</h2>
+                <h3>@Model.students_count</h3>
+            </div>
+            <div class="content-box">
+                <i class="uil uil-layers"></i>
+                <h2>Number of teachers</h2>
+                <h3>@Model.teachers_count</h3>
+            </div>
+            <div class="content-box">
+                <i class="uil uil-graduation-cap"></i>
+                <h2>Number of courses</h2>
+                <h3>@Model.courses_count</h3>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+
+<!-- Link scrl reveal js-->
+<script src="~/Scripts/scrollreveal.js"></script>
+
+<script>
+    /*Script scrl animation*/
+        ScrollReveal({
+            //reset: true,
+            distance: '60px',
+            duration: 1500,
+            delay: 600
+        });
+    ScrollReveal().reveal('.main-title', { delay: 400, origin: 'bottom' });
+    ScrollReveal().reveal('.dash-header h1', { delay: 500, origin: 'bottom' });
+    ScrollReveal().reveal('.teacher-stats', { delay: 600, origin: 'bottom' });
+    ScrollReveal().reveal('hr', { delay: 700, origin: 'bottom' });
+    ScrollReveal().reveal('.dash-content', { delay: 1000, origin: 'bottom' });
+    ScrollReveal().reveal('.dash-header img', { delay: 1000, origin: 'right' });
+
+    const guide = document.querySelector(".main-content .top-nav .left h2");
+    guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Dashboard", "Index", "Admin")';
+</script>
+>>>>>>> 61c7f9e ((Feat) Added feature "Dashboard" as Admin)
 

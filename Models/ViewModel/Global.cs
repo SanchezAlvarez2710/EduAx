@@ -45,6 +45,7 @@ namespace EduAx.Models.ViewModel
         public int students_count { get; set; }
         //COURSES COUNT
         public int courses_count { get; set; }
+<<<<<<< HEAD
         //TO DO COUNT
         public int todo_count { get; set; }
         //DONE COUNT
@@ -53,5 +54,9 @@ namespace EduAx.Models.ViewModel
         public int viewed_count { get; set; }
         //DOING COUNT
         public int doing_count { get; set; }
+=======
+        //TEACHERS COUNT
+        public int teachers_count { get; set; }
+>>>>>>> 61c7f9e ((Feat) Added feature "Dashboard" as Admin)
     }
 }
