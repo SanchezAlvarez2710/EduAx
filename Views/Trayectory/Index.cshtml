@@ -19,88 +19,248 @@
 <div class="container-courses">
     <hr />
     <img class="img-trayectory" src="~/Img/trayectory.png" />
+    <div class="trayectory-stats">
+        <div class="box">
+            <i class="uil uil-users-alt"></i>
+            <h2>Done courses</h2>
+            <h3>@Html.DisplayFor(Model => Model.ElementAt(Model.Count() - 1).done_count)</h3>
+        </div>
+        <div class="box">
+            <i class="uil uil-users-alt"></i>
+            <h2>Courses viewed</h2>
+            <h3>@Html.DisplayFor(Model => Model.ElementAt(Model.Count() - 1).viewed_count)</h3>
+        </div>
+        <div class="box">
+            <i class="uil uil-users-alt"></i>
+            <h2>To do courses</h2>
+            <h3>@Html.DisplayFor(Model => Model.ElementAt(Model.Count() - 1).todo_count)</h3>
+        </div>
+        <div class="box">
+            <i class="uil uil-users-alt"></i>
+            <h2>Doing courses</h2>
+            <h3>@Html.DisplayFor(Model => Model.ElementAt(Model.Count() - 1).doing_count)</h3>
+        </div>
+    </div>
     <div class="courses-list">
+        <h2 class="subtitle">Doing</h2>
+        <hr />
+        @* DOING *@
         @for (int i = 0; i < Model.Count(); i++)
         {
-            <a href="#" class="hero-cta h@(i)">
-                <div style="display: flex; gap: 1rem;">
-                    <i class="@Html.DisplayFor(Model => Model.ElementAt(i).icon_course)"></i>
-                    <p>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</p>
-                </div>
-                <p>Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)</p>
-            </a>
-            <section class="modal-grades mg@(i)">
-                <div class="modal-grades-container mgc@(i)">
-                    <div class="modal-grades-title mgt@(i)">
-                        <div class="icon">
-                            <i class="uil uil-signal-alt-3"></i>
+            if (i < Model.Count() - 1)
+            {
+                if (Model.ElementAt(i).state_student.ToLower().Equals("doing"))
+                {
+                    <a href="#" class="hero-cta h@(i)">
+                        <div style="display: flex; gap: 1rem;">
+                            <i class="@Html.DisplayFor(Model => Model.ElementAt(i).icon_course)"></i>
+                            <p>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</p>
                         </div>
-                        <h2 class="text-title tx@(i)">My trayectory</h2>
-                    </div>
-                    <hr />
-                    @if (Model.ElementAt(i).state_student.ToLower().Equals("done") ||
-                            Model.ElementAt(i).state_student.ToLower().Equals("doing") ||
-                            Model.ElementAt(i).state_student.ToLower().Equals("flunked"))
-                    {
-                        <h2>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</h2>
-                        <canvas id="myChart@(i)"></canvas>                        
-                        <script>
-                            //OPEN-MODAL-GRADES
-                            var openModalGrades@(i) = document.querySelector('.h@(i)');
-                            var modalGrades@(i) = document.querySelector('.mg@(i)');
-                            var closeModalGrades@(i) = document.querySelector('.mgc@(i)');
+                        <p>Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)</p>
+                    </a>
+                    <section class="modal-grades mg@(i)">
+                        <div class="modal-grades-container mgc@(i)">
+                            <div class="modal-grades-title mgt@(i)">
+                                <div class="icon">
+                                    <i class="uil uil-signal-alt-3"></i>
+                                </div>
+                                <h2 class="text-title tx@(i)">My trayectory</h2>
+                            </div>
+                            <hr />
+                            <h2>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</h2>
+                            <h2>State: @Html.DisplayFor(Model => Model.ElementAt(i).state_student)</h2>
+                            <canvas id="myChart@(i)"></canvas>
+                            <script>
+                                    //OPEN-MODAL-GRADES
+                                    var openModalGrades@(i) = document.querySelector('.h@(i)');
+                                    var modalGrades@(i) = document.querySelector('.mg@(i)');
+                                    var closeModalGrades@(i) = document.querySelector('.mgc@(i)');
 
-                            if (openModalGrades@(i) != null && modalGrades@(i) != null && closeModalGrades@(i) != null) {
-                                openModalGrades@(i).addEventListener('click', (e) => {
-                                    e.preventDefault();
-                                    modalGrades@(i).classList.add('modal-show');
-                                });
+                                    if (openModalGrades@(i) != null && modalGrades@(i) != null && closeModalGrades@(i) != null) {
+                                        openModalGrades@(i).addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            modalGrades@(i).classList.add('modal-show');
+                                        });
 
-                                closeModalGrades@(i).addEventListener('click', (e) => {
-                                    e.preventDefault();
-                                    modalGrades@(i).classList.remove('modal-show');
-                                });
-                            }
-                            // Obtener una referencia al elemento canvas del DOM
-                            var $grafica = document.querySelector("#myChart@(i)");
-                            // Las etiquetas son las que van en el eje X.
-                            var etiquetas = ["First Grade", "Second Grade", "Third Grade", "Fourth Grade"]
-                            // Podemos tener varios conjuntos de datos. Comencemos con uno
-                            var datosVentas2020 = {
-                                label: "25% Grade",
-                                data: [@Model.ElementAt(i).stgrade, @Model.ElementAt(i).ndgrade, @Model.ElementAt(i).rdgrade, @Model.ElementAt(i).thgrade], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de fondo
-                                borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
-                                borderWidth: 1,// Ancho del borde
-                            };
-                            new Chart($grafica, {
-                                type: 'line',// Tipo de gráfica
-                                data: {
-                                    labels: etiquetas,
-                                    datasets: [
-                                        datosVentas2020,
-                                        // Aquí más datos...
-                                    ]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero: true
-                                            }
-                                        }],
-                                    },
-                                }
-                            });
-                        </script>
-                    }
-                    else
-                    {
-                        <h2>AAAAAAAAAAAAAAAAA</h2>
-                    }
-                    <a href="" class="modal-grades-close">Close</a>
-                </div>
-            </section>
+                                        closeModalGrades@(i).addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            modalGrades@(i).classList.remove('modal-show');
+                                        });
+                                    }
+                                    // Obtener una referencia al elemento canvas del DOM
+                                    var $grafica = document.querySelector("#myChart@(i)");
+                                    // Las etiquetas son las que van en el eje X.
+                                    var etiquetas = ["First Grade", "Second Grade", "Third Grade", "Fourth Grade"]
+                                    // Podemos tener varios conjuntos de datos. Comencemos con uno
+                                    var datosVentas2020 = {
+                                        label: "25% Grade",
+                                        data: [@Model.ElementAt(i).stgrade, @Model.ElementAt(i).ndgrade, @Model.ElementAt(i).rdgrade, @Model.ElementAt(i).thgrade], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+                                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de fondo
+                                        borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
+                                        borderWidth: 1,// Ancho del borde
+                                    };
+                                    new Chart($grafica, {
+                                        type: 'line',// Tipo de gráfica
+                                        data: {
+                                            labels: etiquetas,
+                                            datasets: [
+                                                datosVentas2020,
+                                                // Aquí más datos...
+                                            ]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }],
+                                            },
+                                        }
+                                    });
+                            </script>
+
+                            <a href="" class="modal-grades-close">Close</a>
+                        </div>
+                    </section>
+                }
+            }
+
+        }
+        <h2 class="subtitle">Done</h2>
+        <hr />
+        @* DONE *@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i < Model.Count() - 1)
+            {
+                if (Model.ElementAt(i).state_student.ToLower().Equals("done"))
+                {
+                    <a href="#" class="hero-cta h@(i)">
+                        <div style="display: flex; gap: 1rem;">
+                            <i class="@Html.DisplayFor(Model => Model.ElementAt(i).icon_course)"></i>
+                            <p>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</p>
+                        </div>
+                        <p>Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)</p>
+                    </a>
+                    <section class="modal-grades mg@(i)">
+                        <div class="modal-grades-container mgc@(i)">
+                            <div class="modal-grades-title mgt@(i)">
+                                <div class="icon">
+                                    <i class="uil uil-signal-alt-3"></i>
+                                </div>
+                                <h2 class="text-title tx@(i)">My trayectory</h2>
+                            </div>
+                            <hr />
+                            <h2>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</h2>
+                            <h2>State: @Html.DisplayFor(Model => Model.ElementAt(i).state_student)</h2>
+                            <canvas id="myChart@(i)"></canvas>
+                            <script>
+                                    //OPEN-MODAL-GRADES
+                                    var openModalGrades@(i) = document.querySelector('.h@(i)');
+                                    var modalGrades@(i) = document.querySelector('.mg@(i)');
+                                    var closeModalGrades@(i) = document.querySelector('.mgc@(i)');
+
+                                    if (openModalGrades@(i) != null && modalGrades@(i) != null && closeModalGrades@(i) != null) {
+                                        openModalGrades@(i).addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            modalGrades@(i).classList.add('modal-show');
+                                        });
+
+                                        closeModalGrades@(i).addEventListener('click', (e) => {
+                                            e.preventDefault();
+                                            modalGrades@(i).classList.remove('modal-show');
+                                        });
+                                    }
+                                    // Obtener una referencia al elemento canvas del DOM
+                                    var $grafica = document.querySelector("#myChart@(i)");
+                                    // Las etiquetas son las que van en el eje X.
+                                    var etiquetas = ["First Grade", "Second Grade", "Third Grade", "Fourth Grade"]
+                                    // Podemos tener varios conjuntos de datos. Comencemos con uno
+                                    var datosVentas2020 = {
+                                        label: "25% Grade",
+                                        data: [@Model.ElementAt(i).stgrade, @Model.ElementAt(i).ndgrade, @Model.ElementAt(i).rdgrade, @Model.ElementAt(i).thgrade], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+                                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de fondo
+                                        borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
+                                        borderWidth: 1,// Ancho del borde
+                                    };
+                                    new Chart($grafica, {
+                                        type: 'line',// Tipo de gráfica
+                                        data: {
+                                            labels: etiquetas,
+                                            datasets: [
+                                                datosVentas2020,
+                                                // Aquí más datos...
+                                            ]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }],
+                                            },
+                                        }
+                                    });
+                            </script>
+                            <a href="" class="modal-grades-close">Close</a>
+                        </div>
+                    </section>
+                }
+            }
+
+        }
+        <h2 class="subtitle">Cancelled</h2>
+        <hr />
+        @* CANCELLED *@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i < Model.Count() - 1)
+            {
+                if (Model.ElementAt(i).state_student.ToLower().Equals("cancelled"))
+                {
+                    <style>
+                        .hero-cta {
+                            opacity: .7;
+                            pointer-events: none;
+                        }
+                    </style>
+                    <a href="#" class="hero-cta h@(i)">
+                        <div style="display: flex; gap: 1rem;">
+                            <i class="@Html.DisplayFor(Model => Model.ElementAt(i).icon_course)"></i>
+                            <p>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</p>
+                        </div>
+                        <p>Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)</p>
+                    </a>
+                }
+            }
+        }
+        <h2 class="subtitle">Flunnked</h2>
+        <hr />
+        @* FLUNKED *@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i < Model.Count() - 1)
+            {
+
+                if (Model.ElementAt(i).state_student.ToLower().Equals("flunked"))
+                {
+                    <style>
+                        .hero-cta {
+                            opacity: .7;
+                            pointer-events: none;
+                        }
+                    </style>
+                    <a href="#" class="hero-cta h@(i)">
+                        <div style="display: flex; gap: 1rem;">
+                            <i class="@Html.DisplayFor(Model => Model.ElementAt(i).icon_course)"></i>
+                            <p>@Html.DisplayFor(Model => Model.ElementAt(i).name_course)</p>
+                        </div>
+                        <p>Group @Html.DisplayFor(Model => Model.ElementAt(i).id_group)</p>
+                    </a>
+                }
+            }
         }
     </div>
 </div>

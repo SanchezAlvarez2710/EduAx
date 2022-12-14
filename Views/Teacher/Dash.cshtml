@@ -77,9 +77,9 @@
                     </div>
                     <hr />
                     <h2>Modify 1st grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                    <input type="number" placeholder="@Model.ElementAt(i).stgrade" value="" step="0.01" min="0" max="5" autofocus=""/>
+                    <input type="number" placeholder="@Model.ElementAt(i).stgrade" value="" step="0.01" min="0" max="5" autofocus="" />
                     <div class="btns">
-                        <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>                    
+                        <a href="#" class="modal-grades-close mgc@(i)g1">Close</a>
                         <a href="#" class="modal-grades-accept mga@(i)g1">Accept</a>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     </div>
                     <hr />
                     <h2>Modify 2nd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                    <input type="number" placeholder="@Model.ElementAt(i).ndgrade" value="" step="0.01" min="0" max="5" autofocus/>
+                    <input type="number" placeholder="@Model.ElementAt(i).ndgrade" value="" step="0.01" min="0" max="5" autofocus />
                     <div class="btns">
                         <a href="#" class="modal-grades-close mgc@(i)g2">Close</a>
                         <a href="#" class="modal-grades-accept mga@(i)g2">Accept</a>
@@ -190,7 +190,7 @@
                     </div>
                     <hr />
                     <h2>Modify 3rd grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                    <input type="number" placeholder="@Model.ElementAt(i).rdgrade" step="0.01" min="0" max="5" autofocus/>
+                    <input type="number" placeholder="@Model.ElementAt(i).rdgrade" step="0.01" min="0" max="5" autofocus />
                     <div class="btns">
                         <a href="#" class="modal-grades-close mgc@(i)g3">Close</a>
                         <a href="#" class="modal-grades-accept mga@(i)g3">Accept</a>
@@ -246,7 +246,7 @@
                     </div>
                     <hr />
                     <h2>Modify 4th grade to @Html.DisplayFor(Model => Model.ElementAt(i).name_person)</h2>
-                    <input type="number" placeholder="@Model.ElementAt(i).thgrade" step="0.01" min="0" max="5" autofocus/>
+                    <input type="number" placeholder="@Model.ElementAt(i).thgrade" step="0.01" min="0" max="5" autofocus />
                     <div class="btns">
                         <a href="#" class="modal-grades-close mgc@(i)g4">Close</a>
                         <a href="#" class="modal-grades-accept mga@(i)g4">Accept</a>
@@ -292,14 +292,15 @@
                 }
             </script>
         }
-    } else
-    {
-<style>
-    .students-list > .grade{
-        pointer-events: none;
     }
-</style>
-                }
+    else
+    {
+        <style>
+            .students-list > .grade {
+                pointer-events: none;
+            }
+        </style>
+    }
 }
 else
 {

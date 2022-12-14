@@ -159,3 +159,14 @@
 ::-webkit-scrollbar {
     width: .7rem;
 }
+
+.subtitle {
+    margin: 0 10%;
+    text-transform: uppercase;
+    color: var(--black-light-color);
+}
+
+.trayectory-stats{
+    display: flex;
+    gap: 1rem;
+}
