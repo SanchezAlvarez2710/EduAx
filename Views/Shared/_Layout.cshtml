@@ -29,54 +29,52 @@
                         <span class="link-name">Home</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/Courses/Index">
-                        <i class="uil uil-layers"></i>
-                        <span class="link-name">Courses</span>
-                    </a>
-                </li>
-                <li>
-                    @{
-                        if (Session["user"] != null)
-                        {
-                            switch (oUser.ROLE_PERSON.ToLower())
-                            {
-                                case "student":
-                                    <a href="/Trayectory/Index">
-                                        <i class="uil uil-signal-alt-3"></i>
-                                        <span class="link-name progress">Trayectory</span>
-                                    </a>
-                                    break;
-                                case "teacher":
-                                    <a href="/Teacher/Index">
-                                        <i class="uil uil-tachometer-fast-alt"></i>
-                                        <span class="link-name progress">Dashboard</span>
-                                    </a>
-                                    break;
-                                case "admin":
-                                    <a href="/Admin/Index">
-                                        <i class="uil uil-tachometer-fast-alt"></i>
-                                        <span class="link-name progress">Dashboard</span>
-                                    </a>
-                                    break;
-                            }
-                        }
+                @if (Session["user"] != null)
+                {
+                    if (!oUser.ROLE_PERSON.ToLower().Equals("teacher") && !oUser.ROLE_PERSON.ToLower().Equals("admin"))
+                    {
+                        <li>
+                            <a href="/Courses/Index">
+                                <i class="uil uil-layers"></i>
+                                <span class="link-name">Courses</span>
+                            </a>
+                        </li>
                     }
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-comment-question"></i>
-                        <span class="link-name">Support</span>
-                    </a>
-                </li>
+                    <li>
+                        @switch (oUser.ROLE_PERSON.ToLower())
+                        {
+                            case "student":
+                                <a href="/Trayectory/Index">
+                                    <i class="uil uil-signal-alt-3"></i>
+                                    <span class="link-name progress">Trayectory</span>
+                                </a>
+                                break;
+                            case "teacher":
+                                <a href="/Teacher/Index">
+                                    <i class="uil uil-tachometer-fast-alt"></i>
+                                    <span class="link-name progress">Dashboard</span>
+                                </a>
+                                break;
+                            case "admin":
+                                <a href="/Admin/Index">
+                                    <i class="uil uil-tachometer-fast-alt"></i>
+                                    <span class="link-name progress">Dashboard</span>
+                                </a>
+                                break;
+                        }
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/Courses/Index">
+                            <i class="uil uil-layers"></i>
+                            <span class="link-name">Courses</span>
+                        </a>
+                    </li>
+                }
             </ul>
             <ul class="bottom-nav-links">
-                <li>
-                    <a href="#">
-                        <i class="uil uil-language"></i>
-                        <span class="link-name">Spanish</span>
-                    </a>
-                </li>
                 <li>
                     @{ if (Session["user"] != null)
                         {
@@ -93,15 +91,6 @@
                             </a>
                         }
                     }
-                </li>
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Dark mode</span>
-                    </a>
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
                 </li>
             </ul>
         </div>

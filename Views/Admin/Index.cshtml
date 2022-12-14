@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-=======
-﻿@using EduAx.Models.ViewModel
+@using EduAx.Models.ViewModel
 @model EduAx.Models.ViewModel.Global
 
 @{
@@ -24,7 +15,7 @@
             <div class="icon">
                 <i class="uil uil-tachometer-fast-alt"></i>
             </div>
-            <h2 class="text">Teacher Dashboard</h2>
+            <h2 class="text">Admin Dashboard</h2>
         </div>
         <img src="~/Img/teacher_dash.png" />
         <h1>Welcome back! @Model.name_person</h1>
@@ -70,5 +61,4 @@
     const guide = document.querySelector(".main-content .top-nav .left h2");
     guide.innerHTML = 'You are on > @Html.ActionLink("Home", "Index", "Home") > @Html.ActionLink("Dashboard", "Index", "Admin")';
 </script>
->>>>>>> 61c7f9e ((Feat) Added feature "Dashboard" as Admin)
 
